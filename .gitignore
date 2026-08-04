@@ -1,1 +1,33 @@
 .alzlib
+ 
+# Local working directory
+.terraform/
+
+# Local lock files (Exclude if you are building reusable modules)
+# Note: Keep tracked for application deployments to pin provider versions
+.terraform.lock.hcl
+
+# State files and backups (Contains sensitive infrastructure data)
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Exclude all variable files (Often contain secrets/passwords)
+*.tfvars
+*.tfvars.json
+
+# Ignore local override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# Exclude speculative execution plans
+*.tfplan

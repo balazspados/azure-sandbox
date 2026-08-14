@@ -1,15 +1,14 @@
 locals {
   common_tags = {
-    environment = "platform"
-    managed_by  = "terraform"
-    purpose    = "alz-management"
-    cost_center = "XXX"
+    description      = "${upper(var.org_prefix)} ALZ Platform"
+    costCenter       = var.platform_costcenter
+    environment      = var.environment
+    function         = "${upper(var.org_prefix)} ALZ Platform"
+    application      = "${upper(var.org_prefix)} ALZ Platform"
+    deploymentMethod = "terraform"
+    gitRepository    = ""
+
   }
-  azure_region = {
-    name       = "newzealandnorth"
-    short_name = "nzn"
-  }
-  resource_postfix = {
-    id = "001"
-  }
+
+  alz_resource_instace_number = "001"
 }

@@ -15,9 +15,9 @@
 crash.log
 crash.*.log
 
-# Exclude all variable files (Often contain secrets/passwords)
-*.tfvars
-*.tfvars.json
+# # Exclude all variable files (Often contain secrets/passwords)
+# *.tfvars
+# *.tfvars.json
 
 # Ignore local override files
 override.tf
@@ -31,3 +31,4 @@ terraform.rc
 
 # Exclude speculative execution plans
 *.tfplan
+tfplan

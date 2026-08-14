@@ -1,0 +1,27 @@
+{
+  "name": "MAU-Allowed-Locations",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2023-04-01",
+  "scope": "${current_scope_resource_id}",
+  "properties": {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+    "definitionVersion": "1.*.*",
+    "displayName": "MAU Allowed Locations",
+    "description": "Restricts the locations resources can be deployed to within the MAU landing zone.",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Resource location is not in the list of allowed locations for this landing zone."
+      }
+    ],
+    "parameters": {
+      "listOfAllowedLocations": {
+        "value": [
+          "australiaeast",
+          "global",
+          "newzealandnorth"
+        ]
+      }
+    }
+  }
+}

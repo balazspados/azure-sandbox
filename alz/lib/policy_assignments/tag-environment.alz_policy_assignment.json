@@ -1,0 +1,24 @@
+{
+  "name": "MAU-Tag-Environment",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2023-04-01",
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "scope": "${current_scope_resource_id}",
+  "properties": {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/9ea02ca2-71db-412d-8b00-7c7ca9fcd32d",
+    "displayName": "MAU append environment tag to resources",
+    "description": "Appends the environment tag from the parent resource group if missing on the resource.",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      { "message": "The environment tag is missing and should be inherited from the resource group." }
+    ],
+    "parameters": {
+      "tagName": {
+        "value": "environment"
+      }
+    }
+  }
+}

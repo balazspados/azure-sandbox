@@ -1,0 +1,18 @@
+{
+  "name": "MAU-Subnet-NSG-Audit",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2023-04-01",
+  "scope": "${current_scope_resource_id}",
+  "properties": {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e71308d3-144b-4262-b144-efdc3cc90517",
+    "definitionVersion": "3.*.*",
+    "displayName": "MAU Subnets associated with a NSG",
+    "description": "Audits subnets that do not have a network security group associated.",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Subnet does not have a network security group associated."
+      }
+    ]
+  }
+}

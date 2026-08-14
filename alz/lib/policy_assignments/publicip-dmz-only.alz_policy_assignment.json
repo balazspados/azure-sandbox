@@ -1,0 +1,17 @@
+{
+    "name": "MAU-PublicIP-DMZ-Only",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2023-04-01",
+    "scope": "${current_scope_resource_id}",
+    "properties": {
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/MAU-PublicIP-DMZ-Only",
+        "displayName": "MAU Only Allow Public IPs in specific subnets",
+        "description": "Restricts public IP association to designated DMZ subnets only.",
+        "enforcementMode": "Default",
+        "nonComplianceMessages": [
+            {
+                "message": "Public IPs can only be associated with resources in a DMZ subnet."
+            }
+        ]
+    }
+}

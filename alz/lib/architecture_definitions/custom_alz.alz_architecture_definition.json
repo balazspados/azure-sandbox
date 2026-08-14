@@ -4,9 +4,9 @@
   "management_groups": [
     {
       "archetypes": [
-        "root"
+        "root_custom"
       ],
-      "display_name": "Azure Landing Zones",
+      "display_name": "MAU Azure Landing Zones root",
       "exists": false,
       "id": "alz",
       "parent_id": null
@@ -24,28 +24,37 @@
       "archetypes": [
         "landing_zones"
       ],
-      "display_name": "Landing zones",
+      "display_name": "Applications",
       "exists": false,
-      "id": "landingzones",
+      "id": "applications",
       "parent_id": "alz"
     },
     {
       "archetypes": [
         "corp"
       ],
-      "display_name": "Corp",
+      "display_name": "App A LZ",
       "exists": false,
-      "id": "corp",
-      "parent_id": "landingzones"
+      "id": "appa",
+      "parent_id": "applications"
     },
     {
       "archetypes": [
         "online"
       ],
-      "display_name": "Online",
+      "display_name": "App B LZ",
       "exists": false,
-      "id": "online",
-      "parent_id": "landingzones"
+      "id": "appb",
+      "parent_id": "applications"
+    },
+    {
+      "archetypes": [
+        "online"
+      ],
+      "display_name": "App C LZ",
+      "exists": false,
+      "id": "appc",
+      "parent_id": "applications"
     },
     {
       "archetypes": [
@@ -78,7 +87,7 @@
       "archetypes": [
         "connectivity"
       ],
-      "display_name": "Connectivity",
+      "display_name": "Core network",
       "exists": false,
       "id": "connectivity",
       "parent_id": "platform"

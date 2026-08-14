@@ -1,0 +1,22 @@
+{
+    "name": "root_custom",
+    "base_archetype": "root",
+    "policy_assignments_to_add": [
+        "MAU-CIS-Benchmark",
+        "MAU-Allowed-Locations",
+        "MAU-Subnet-NSG-Audit",
+        "MAU-PublicIP-DMZ-Only",
+        "MAU-Tag-Description",
+        "MAU-Tag-CostCenter",
+        "MAU-Tag-Environment"
+    ],
+    "policy_assignments_to_remove": [],
+    "policy_definitions_to_add": [
+        "MAU-PublicIP-DMZ-Only"
+    ],
+    "policy_definitions_to_remove": [],
+    "policy_set_definitions_to_add": [],
+    "policy_set_definitions_to_remove": [],
+    "role_definitions_to_add": [],
+    "role_definitions_to_remove": []
+}

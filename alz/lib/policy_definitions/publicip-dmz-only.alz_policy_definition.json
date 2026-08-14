@@ -1,0 +1,44 @@
+{
+  "name": "MAU-PublicIP-DMZ-Only",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2023-04-01",
+  "scope": "${root_scope_resource_id}",
+  "properties": {
+    "displayName": "MAU Only Allow Public IPs in specific subnets",
+    "description": "Denies public IP association on network interfaces unless the subnet is designated as a DMZ subnet.",
+    "mode": "Indexed",
+    "policyType": "Custom",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/networkInterfaces"
+          },
+          {
+            "count": {
+              "field": "Microsoft.Network/networkInterfaces/ipConfigurations[*]",
+              "where": {
+                "allOf": [
+                  {
+                    "field": "Microsoft.Network/networkInterfaces/ipConfigurations[*].publicIPAddress.id",
+                    "exists": "true"
+                  },
+                  {
+                    "field": "Microsoft.Network/networkInterfaces/ipConfigurations[*].subnet.id",
+                    "notContains": "dmz"
+                  }
+                ]
+              }
+            },
+            "greaterOrEquals": 1
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

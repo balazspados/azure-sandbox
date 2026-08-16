@@ -20,7 +20,7 @@ provider "alz" {
 provider "azurerm" {
   features {
     resource_group {
-      prevent_deletion_if_contains_resources = false
+      prevent_deletion_if_contains_resources = true
     }
   }
 }
@@ -29,7 +29,7 @@ provider "azurerm" {
   alias = "connectivity"
   features {
     resource_group {
-      prevent_deletion_if_contains_resources = false
+      prevent_deletion_if_contains_resources = true
     }
   }
   subscription_id = var.connectivity_subscription.id
@@ -39,7 +39,7 @@ provider "azurerm" {
   alias = "identity"
   features {
     resource_group {
-      prevent_deletion_if_contains_resources = false
+      prevent_deletion_if_contains_resources = true
     }
   }
   subscription_id = var.identity_subscription.id
@@ -49,7 +49,7 @@ provider "azurerm" {
   alias = "security"
   features {
     resource_group {
-      prevent_deletion_if_contains_resources = false
+      prevent_deletion_if_contains_resources = true
     }
   }
   subscription_id = var.security_subscription.id
@@ -77,6 +77,10 @@ resource "azurerm_resource_group" "private_dns_zone" {
   location = local.azure_region_location
   name     = local.private_dns_name_rg
   tags     = local.common_tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # module "private_dns_zones" {

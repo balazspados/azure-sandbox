@@ -8,7 +8,14 @@
         "MAU-PublicIP-DMZ-Only",
         "MAU-Tag-Description",
         "MAU-Tag-CostCenter",
-        "MAU-Tag-Environment"
+        "MAU-Tag-Environment",
+        "MAU-Tag-updateSchedule",
+        "MAU-Tag-Function",
+        "MAU-Tag-Application",
+        "MAU-Tag-deployedBy",
+        "MAU-Tag-client",
+        "MAU-Tag-deploymentMethod",
+        "MAU-Tag-gitRepository"
     ],
     "policy_assignments_to_remove": [],
     "policy_definitions_to_add": [

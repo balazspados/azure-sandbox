@@ -1,0 +1,61 @@
+{
+  "name": "MAU-Require-RG-Tag",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2023-04-01",
+  "scope": "${root_scope_resource_id}",
+  "properties": {
+    "displayName": "MAU require resource group tags",
+    "description": "Denies creation or update of a resource group missing a required tag, with a built-in exclusion for backup snapshot resource groups.",
+    "mode": "All",
+    "policyType": "Custom",
+    "parameters": {
+      "tagName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Tag Name",
+          "description": "Name of the tag required on resource groups."
+        }
+      },
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect to apply when the tag is missing."
+        },
+        "allowedValues": ["Deny", "Audit", "Disabled"],
+        "defaultValue": "Deny"
+      },
+      "backupRGprefix": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Backup Resource Group Prefix",
+          "description": "Resource groups whose name starts with this prefix are excluded from the tag requirement (e.g. Azure Backup-managed snapshot resource groups)."
+        },
+        "defaultValue": "AzureBackupRG"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+          },
+          {
+            "field": "[concat('tags[', parameters('tagName'), ']')]",
+            "exists": "false"
+          },
+          {
+            "not": {
+              "value": "[resourceGroup().name]",
+              "like": "[concat(parameters('backupRGprefix'), '*')]"
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    }
+  }
+}

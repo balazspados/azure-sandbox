@@ -1,15 +1,15 @@
 locals {
   common_tags = {
-    description      = "${upper(local.org_prefix)} ALZ Platform"
+    description      = "${upper(local.org_prefix)} ALZ Platform core service"
     costCenter       = local.platform_costcenter
     environment      = local.environment
-    function         = "${upper(local.org_prefix)} ALZ Platform"
-    application      = "${upper(local.org_prefix)} ALZ Platform"
+    function         = "Core service"
+    application      = "Core service"
     deploymentMethod = "terraform"
     gitRepository    = ""
   }
 
-  private_dns_name_rg = "${local.org_prefix}-rg-private_dns-${local.environment}-${local.azure_region_location_short}-001"
+  private_dns_name_rg = "${local.org_prefix}-rg-pdnsz-${local.environment}-${local.azure_region_location_short}-001"
 
   platform_costcenter         = data.terraform_remote_state.alz-management.outputs.platform_costcenter
   org_prefix                  = data.terraform_remote_state.alz-management.outputs.org_prefix

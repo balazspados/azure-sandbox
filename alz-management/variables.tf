@@ -24,3 +24,10 @@ variable "environment" {
   type    = string
   default = "platform"
 }
+
+variable "enable_telemetry" {
+  type        = bool
+  default     = true
+  description = "Enable telemetry for the module."
+  nullable    = false
+}

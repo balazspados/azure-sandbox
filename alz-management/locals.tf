@@ -1,10 +1,10 @@
 locals {
   common_tags = {
-    description      = "${upper(var.org_prefix)} ALZ Platform"
+    description      = "${upper(var.org_prefix)} ALZ Platform core service"
     costCenter       = var.platform_costcenter
     environment      = var.environment
-    function         = "${upper(var.org_prefix)} ALZ Platform"
-    application      = "${upper(var.org_prefix)} ALZ Platform"
+    function         = "Core service"
+    application      = "Core service"
     deploymentMethod = "terraform"
     gitRepository    = ""
 

@@ -11,9 +11,10 @@
 *.tfstate
 *.tfstate.*
 
-# Crash logs
-crash.log
-crash.*.log
+# logs files
+*.log
+
+
 
 # # Exclude all variable files (Often contain secrets/passwords)
 # *.tfvars
@@ -32,3 +33,6 @@ terraform.rc
 # Exclude speculative execution plans
 *.tfplan
 tfplan
+
+#Exclude MacOS files
+.DS_Store

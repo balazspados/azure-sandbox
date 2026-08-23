@@ -1,0 +1,6 @@
+.alzlib/
+.terraform/
+temp/
+tfplan
+*.tfstate
+*.tfstate.backup

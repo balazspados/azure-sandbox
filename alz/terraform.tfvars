@@ -1,4 +1,3 @@
-enable_telemetry = false
 
 security_subscription = {
   id      = "ce7da240-b2de-4cb5-a68b-ab14af2f4764"
@@ -18,4 +17,8 @@ identity_subscription = {
 management_subscription = {
   id      = "8b7867e2-e2b3-468e-b0ee-68da980c2eee"
   MG_name = "management"
+}
+
+azure_tenant = {
+  id = "1c91a700-acbd-4ace-9ace-cb0c30144b54"
 }

@@ -1,11 +1,4 @@
 
-variable "enable_telemetry" {
-  type        = bool
-  default     = true
-  description = "Enable telemetry for the module."
-  nullable    = false
-}
-
 variable "security_subscription" {
   type        = map(string)
   description = "Security subscription details "
@@ -39,5 +32,13 @@ variable "management_subscription" {
   default = {
     id      = ""
     MG_name = "management"
+  }
+}
+
+variable "azure_tenant" {
+  type        = map(string)
+  description = "Management subscription details"
+  default = {
+    id = ""
   }
 }

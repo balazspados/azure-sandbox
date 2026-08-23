@@ -1,0 +1,28 @@
+{
+  "name": "MAU-Tag-RG-deployedBy",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2023-04-01",
+  "scope": "${current_scope_resource_id}",
+  "properties": {
+    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/MAU-Require-RG-Tag",
+    "displayName": "MAU enforce deployedBy tag on resource groups",
+    "description": "Audit resource group creation/update missing the deployedBy tag, excluding backup snapshot resource groups.",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Resource group is missing the required deployedBy tag."
+      }
+    ],
+    "parameters": {
+      "tagName": {
+        "value": "deployedBy"
+      },
+      "effect": {
+        "value": "Deny"
+      },
+      "backupRGprefix": {
+        "value": "mau-rg-backupsnap-prd-ae-"
+      }
+    }
+  }
+}

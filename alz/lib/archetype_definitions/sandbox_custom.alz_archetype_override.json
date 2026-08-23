@@ -1,0 +1,15 @@
+{
+    "name": "sandbox_custom",
+    "base_archetype": "sandbox",
+    "policy_assignments_to_add": [],
+    "policy_assignments_to_remove": [
+        "Enforce-ALZ-Decomm",
+        "Enforce-ALZ-Sandbox"
+    ],
+    "policy_definitions_to_add": [],
+    "policy_definitions_to_remove": [],
+    "policy_set_definitions_to_add": [],
+    "policy_set_definitions_to_remove": [],
+    "role_definitions_to_add": [],
+    "role_definitions_to_remove": []
+}

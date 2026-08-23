@@ -13,7 +13,9 @@
     "description": "Appends the application tag from the parent resource group if missing on the resource.",
     "enforcementMode": "Default",
     "nonComplianceMessages": [
-      { "message": "The application tag is missing and should be inherited from the resource group." }
+      {
+        "message": "The application tag is missing and should be inherited from the resource group."
+      }
     ],
     "parameters": {
       "tagName": {

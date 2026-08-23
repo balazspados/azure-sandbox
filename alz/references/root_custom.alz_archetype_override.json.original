@@ -1,0 +1,39 @@
+{
+    "name": "root_custom",
+    "base_archetype": "root",
+    "policy_assignments_to_add": [
+        "MAU-CIS-Benchmark",
+        "MAU-Allowed-Locations",
+        "MAU-Subnet-NSG-Audit",
+        "MAU-PublicIP-DMZ-Only",
+        "MAU-Tag-Description",
+        "MAU-Tag-CostCenter",
+        "MAU-Tag-Environment",
+        "MAU-Tag-updateSchedule",
+        "MAU-Tag-Function",
+        "MAU-Tag-Application",
+        "MAU-Tag-deployedBy",
+        "MAU-Tag-client",
+        "MAU-Tag-deploymentMethod",
+        "MAU-Tag-gitRepository",
+        "MAU-Tag-RG-application",
+        "MAU-Tag-RG-costCenter",
+        "MAU-Tag-RG-deployedBy",
+        "MAU-Tag-RG-deployMethod",
+        "MAU-Tag-RG-description",
+        "MAU-Tag-RG-environment",
+        "MAU-Tag-RG-function",
+        "MAU-Tag-RG-gitRepo",
+        "MAU-Tag-RG-updateSched"
+    ],
+    "policy_assignments_to_remove": [],
+    "policy_definitions_to_add": [
+        "MAU-PublicIP-DMZ-Only",
+        "MAU-Require-RG-Tag"
+    ],
+    "policy_definitions_to_remove": [],
+    "policy_set_definitions_to_add": [],
+    "policy_set_definitions_to_remove": [],
+    "role_definitions_to_add": [],
+    "role_definitions_to_remove": []
+}

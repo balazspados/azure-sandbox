@@ -1,5 +1,5 @@
 {
-  "name": "MAU-Tag-RG-Description",
+  "name": "MAU-Tag-RG-description",
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2023-04-01",
   "scope": "${current_scope_resource_id}",
@@ -9,12 +9,20 @@
     "description": "Audit resource group creation/update missing the description tag, excluding backup snapshot resource groups.",
     "enforcementMode": "Default",
     "nonComplianceMessages": [
-      { "message": "Resource group is missing the required description tag." }
+      {
+        "message": "Resource group is missing the required description tag."
+      }
     ],
     "parameters": {
-      "tagName": { "value": "description" },
-      "effect": { "value": "Audit" },
-      "backupRGprefix": { "value": "mau-rg-backupsnap-prd-ae-" }
+      "tagName": {
+        "value": "description"
+      },
+      "effect": {
+        "value": "Deny"
+      },
+      "backupRGprefix": {
+        "value": "mau-rg-backupsnap-prd-ae-"
+      }
     }
   }
 }

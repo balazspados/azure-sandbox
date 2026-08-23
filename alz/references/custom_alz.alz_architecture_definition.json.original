@@ -8,30 +8,30 @@
       ],
       "display_name": "MAU Azure Landing Zones root",
       "exists": false,
-      "id": "root",
+      "id": "alz",
       "parent_id": null
     },
     {
       "archetypes": [
-        "platform_custom"
+        "platform"
       ],
       "display_name": "Platform",
       "exists": false,
       "id": "platform",
-      "parent_id": "root"
+      "parent_id": "alz"
     },
     {
       "archetypes": [
-        "landing_zones_custom"
+        "landing_zones"
       ],
       "display_name": "Applications",
       "exists": false,
       "id": "applications",
-      "parent_id": "root"
+      "parent_id": "alz"
     },
     {
       "archetypes": [
-        "corp_custom"
+        "corp"
       ],
       "display_name": "App A LZ",
       "exists": false,
@@ -58,12 +58,12 @@
     },
     {
       "archetypes": [
-        "sandbox_custom"
+        "sandbox"
       ],
       "display_name": "Sandbox",
       "exists": false,
       "id": "sandbox",
-      "parent_id": "root"
+      "parent_id": "alz"
     },
     {
       "archetypes": [
@@ -85,7 +85,7 @@
     },
     {
       "archetypes": [
-        "connectivity_custom"
+        "connectivity"
       ],
       "display_name": "Core network",
       "exists": false,
@@ -94,7 +94,7 @@
     },
     {
       "archetypes": [
-        "identity_custom"
+        "identity"
       ],
       "display_name": "Identity",
       "exists": false,
@@ -103,12 +103,12 @@
     },
     {
       "archetypes": [
-        "decommissioned_custom"
+        "decommissioned"
       ],
       "display_name": "Decommissioned",
       "exists": false,
       "id": "decommissioned",
-      "parent_id": "root"
+      "parent_id": "alz"
     }
   ]
 }

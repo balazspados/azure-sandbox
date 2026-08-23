@@ -22,7 +22,11 @@
           "displayName": "Effect",
           "description": "Effect to apply when the tag is missing."
         },
-        "allowedValues": ["Deny", "Audit", "Disabled"],
+        "allowedValues": [
+          "Deny",
+          "Audit",
+          "Disabled"
+        ],
         "defaultValue": "Deny"
       },
       "backupRGprefix": {

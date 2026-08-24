@@ -5,3 +5,6 @@ tfplan
 *.tfstate
 *.tfstate.backup
 references/
+
+#Exclude MacOS files
+.DS_Store

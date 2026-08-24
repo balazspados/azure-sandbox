@@ -4,3 +4,6 @@ temp/
 tfplan
 *.tfstate
 *.tfstate.backup
+
+#Exclude MacOS files
+.DS_Store

@@ -38,3 +38,8 @@ provider "azurerm" {
   }
   subscription_id = local.management_subscription_id
 }
+
+provider "azapi" {
+  alias           = "connectivity"
+  subscription_id = local.connectivity_subscription_id
+}

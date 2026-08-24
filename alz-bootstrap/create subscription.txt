@@ -1,0 +1,6 @@
+az account alias create --name "platform-connectivity" --display-name "Platform - Connectivity" --billing-scope "/providers/Microsoft.Billing/billingAccounts/793881c2-1dbc-58a7-97e1-997069604e23:342d4565-b5af-41dc-9fe6-08e3ac703fcf_2019-05-31/billingProfiles/<profile-id>/invoiceSections/OQ2N-URE4-BG7-PGB"  --workload "Production"
+az account alias create --name "platform-connectivity" --display-name "Platform - Connectivity" --billing-scope "/providers/Microsoft.Billing/billingAccounts/793881c2-1dbc-58a7-97e1-997069604e23:342d4565-b5af-41dc-9fe6-08e3ac703fcf_2019-05-31/billingProfiles/OQ2N-URE4-BG7-PGB/invoiceSections/64f11abe-ab87-4848-b66b-d6db65b74389" --workload "Production"
+
+account-guid: 793881c2-1dbc-58a7-97e1-997069604e23:342d4565-b5af-41dc-9fe6-08e3ac703fcf_2019-05-31
+profileid: OQ2N-URE4-BG7-PGB
+sectionid: 64f11abe-ab87-4848-b66b-d6db65b74389

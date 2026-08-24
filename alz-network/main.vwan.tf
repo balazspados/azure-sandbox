@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "rg_nw_vwan" {
 ###Create virtual hub
 module "virtual_wan_hub" {
   source  = "Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm"
-  version = "0.17.1"      # https://github.com/Azure/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan
+  version = "0.17.1" # https://github.com/Azure/terraform-azurerm-avm-ptn-alz-connectivity-virtual-wan
 
   providers = {
     azurerm = azurerm.connectivity
@@ -58,7 +58,7 @@ module "virtual_wan_hub" {
         platform_vnet = {
           name                      = local.platform_vnet_hub_connection.name
           remote_virtual_network_id = module.platform_vnet.resource_id
-          internet_security_enabled = false          # Needs to be revisited after establishing VPN/ER connection
+          internet_security_enabled = false # Needs to be revisited after establishing VPN/ER connection
         }
       }
     }

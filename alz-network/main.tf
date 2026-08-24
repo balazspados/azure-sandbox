@@ -137,7 +137,7 @@ module "platform_vnet" {
       name             = local.platform_vnet_subnets.dns_resolver_inbound.name
       address_prefixes = local.platform_vnet_subnets.dns_resolver_inbound.address_prefixes
       network_security_group = {
-        id = azurerm_network_security_group.dns_resolver_inbound.id
+        id = module.nsg_dns_resolver_inbound.resource_id
       }
       delegations = [
         {
@@ -152,7 +152,7 @@ module "platform_vnet" {
       name             = local.platform_vnet_subnets.dns_resolver_outbound.name
       address_prefixes = local.platform_vnet_subnets.dns_resolver_outbound.address_prefixes
       network_security_group = {
-        id = azurerm_network_security_group.dns_resolver_outbound.id
+        id = module.nsg_dns_resolver_outbound.resource_id
       }
       delegations = [
         {
@@ -166,45 +166,33 @@ module "platform_vnet" {
   }
 }
 
-### NSGs — least-privilege, but must not block the resolver's own DNS traffic
-resource "azurerm_network_security_group" "dns_resolver_inbound" {
-  provider            = azurerm.connectivity
+### DNS resolver inbound NSG rules
+module "nsg_dns_resolver_inbound" {
+  source  = "Azure/avm-res-network-networksecuritygroup/azurerm"
+  version = "0.5.1" # https://github.com/Azure/terraform-azurerm-avm-res-network-networksecuritygroup
+  providers = {
+    azurerm = azurerm.connectivity
+  }
+  location            = local.azure_region_location
   name                = "${local.org_prefix}-nsg-dnsin-${local.environment}-${local.azure_region_location_short}-001"
   resource_group_name = azurerm_resource_group.platform_vnet.name
-  location            = local.azure_region_location
+  security_rules      = local.platform_dnsin_nsg_rules
+  enable_telemetry    = local.avm_telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
   tags                = local.common_tags
-
-  security_rule {
-    name                       = "AllowDnsFromVNet"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_ranges    = ["53"]
-    source_address_prefix      = "VirtualNetwork"
-    destination_address_prefix = "VirtualNetwork"
-  }
 }
 
-resource "azurerm_network_security_group" "dns_resolver_outbound" {
-  provider            = azurerm.connectivity
+module "nsg_dns_resolver_outbound" {
+  source  = "Azure/avm-res-network-networksecuritygroup/azurerm"
+  version = "0.5.1" # https://github.com/Azure/terraform-azurerm-avm-res-network-networksecuritygroup
+  providers = {
+    azurerm = azurerm.connectivity
+  }
+  location            = local.azure_region_location
   name                = "${local.org_prefix}-nsg-dnsout-${local.environment}-${local.azure_region_location_short}-001"
   resource_group_name = azurerm_resource_group.platform_vnet.name
-  location            = local.azure_region_location
+  security_rules      = local.platform_dnsout_nsg_rules
+  enable_telemetry    = local.avm_telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
   tags                = local.common_tags
-
-  security_rule {
-    name                       = "AllowDnsToVNet"
-    priority                   = 100
-    direction                  = "Outbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_ranges    = ["53"]
-    source_address_prefix      = "VirtualNetwork"
-    destination_address_prefix = "*"
-  }
 }
 
 # ### Create private DNS resolver

@@ -1,18 +1,18 @@
 terraform {
-  required_version = "~> 1.15.8"
+  required_version = ">= 1.15.8, <2.0.0"
 
   required_providers {
     alz = {
       source  = "azure/alz"
-      version = "~> 0.22"     # https://github.com/Azure/terraform-provider-alz
+      version = "~> 0.22" # https://github.com/Azure/terraform-provider-alz
     }
     azapi = {
       source  = "azure/azapi"
-      version = "~> 2.12"    # https://github.com/Azure/terraform-provider-azapi
+      version = "~> 2.12" # https://github.com/Azure/terraform-provider-azapi
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 5.2"    # https://github.com/hashicorp/terraform-provider-azurerm
+      version = "~> 4.81" # https://github.com/hashicorp/terraform-provider-azurerm
     }
   }
 }

@@ -8,26 +8,26 @@ module "alz_architecture" {
   version = "0.21.0" # https://registry.terraform.io/modules/Azure/avm-ptn-alz/azurerm/latest
 
   architecture_name  = "custom_alz"
-  location           = local.azure_region_location
+  location           = local.alz_config.azure_region_location
   parent_resource_id = data.azapi_client_config.current.tenant_id
-  enable_telemetry   = local.avm_telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
+  enable_telemetry   = local.alz_config.telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
 
   subscription_placement = {
     management = {
-      subscription_id       = var.management_subscription.id
-      management_group_name = var.management_subscription.MG_name
+      subscription_id       = local.alz_config.management_subscription_id
+      management_group_name = local.alz_config.management_subscription_MG_name
     },
     connectivity = {
-      subscription_id       = var.connectivity_subscription.id
-      management_group_name = var.connectivity_subscription.MG_name
+      subscription_id       = local.alz_config.connectivity_subscription_id
+      management_group_name = local.alz_config.connectivity_subscription_MG_name
     },
     identity = {
-      subscription_id       = var.identity_subscription.id
-      management_group_name = var.identity_subscription.MG_name
+      subscription_id       = local.alz_config.identity_subscription_id
+      management_group_name = local.alz_config.identity_subscription_MG_name
     }
     security = {
-      subscription_id       = var.security_subscription.id
-      management_group_name = var.security_subscription.MG_name
+      subscription_id       = local.alz_config.security_subscription_id
+      management_group_name = local.alz_config.security_subscription_MG_name
     }
   }
 

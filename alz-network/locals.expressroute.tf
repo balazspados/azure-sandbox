@@ -1,7 +1,7 @@
 locals {
   expressroute_paramaters = {
-    rg_name = "${local.org_prefix}-rg-nw-${local.environment}-${local.azure_region_location_short}-002"
-    name    = "${local.org_prefix}-er-nw-${local.environment}-${local.azure_region_location_short}-001"
+    rg_name = "${local.alz_config.org_prefix}-rg-nw-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-002"
+    name    = "${local.alz_config.org_prefix}-er-nw-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-001"
   }
 
 }

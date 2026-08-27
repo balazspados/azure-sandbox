@@ -1,7 +1,7 @@
 ### Create private DNS resolver
-resource "azurerm_resource_group" "private_dns" {
+resource "azurerm_resource_group" "private_dns_resolver" {
   provider = azurerm.connectivity
-  location = local.azure_region_location
+  location = local.alz_config.azure_region_location
   name     = local.private_dns_resolver.rg_name
   tags     = local.common_tags
 
@@ -20,23 +20,23 @@ module "private_dns_resolver" {
   }
 
   name                        = local.private_dns_resolver.name
-  resource_group_name         = azurerm_resource_group.private_dns.name
-  location                    = local.azure_region_location
-  virtual_network_resource_id = module.platform_vnet.resource_id
-  enable_telemetry            = local.avm_telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
+  resource_group_name         = azurerm_resource_group.private_dns_resolver.name
+  location                    = local.alz_config.azure_region_location
+  virtual_network_resource_id = module.platform_vnet_001.resource_id
+  enable_telemetry            = local.alz_config.telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
   tags                        = local.common_tags
 
   inbound_endpoints = {
     inbound = {
       name        = local.private_dns_resolver_endpoints.inbound.name
-      subnet_name = module.platform_vnet.subnets.dns_resolver_inbound.name
+      subnet_name = module.platform_vnet_001.subnets.dns_resolver_inbound.name
     }
   }
 
   outbound_endpoints = {
     outbound = {
       name        = local.private_dns_resolver_endpoints.outbound.name
-      subnet_name = module.platform_vnet.subnets.dns_resolver_outbound.name
+      subnet_name = module.platform_vnet_001.subnets.dns_resolver_outbound.name
 
       # Actual forwarding rules (on-prem domains) get added under `rules` in Step 8,
       # once VPN/ExpressRoute is live and there's an on-prem DNS server to forward to.

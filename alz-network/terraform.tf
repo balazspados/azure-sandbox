@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.15.8"
+  required_version = ">= 1.15.8, <2.0.0"
 
   required_providers {
     alz = {
@@ -18,28 +18,26 @@ terraform {
 }
 
 provider "azurerm" {
-  # resource_provider_registrations = "none"
   alias = "connectivity"
   features {
     resource_group {
       prevent_deletion_if_contains_resources = true
     }
   }
-  subscription_id = local.connectivity_subscription_id
+  subscription_id = local.alz_config.connectivity_subscription_id
 }
 
 provider "azurerm" {
-  # resource_provider_registrations = "none"
   alias = "management"
   features {
     resource_group {
       prevent_deletion_if_contains_resources = true
     }
   }
-  subscription_id = local.management_subscription_id
+  subscription_id = local.alz_config.management_subscription_id
 }
 
 provider "azapi" {
   alias           = "connectivity"
-  subscription_id = local.connectivity_subscription_id
+  subscription_id = local.alz_config.connectivity_subscription_id
 }

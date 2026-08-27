@@ -1,7 +1,7 @@
-### Create RG for vWAN network 
-resource "azurerm_resource_group" "rg_nw_vwan" {
+### Create RG for platform network 
+resource "azurerm_resource_group" "rg_nw_001" {
   provider = azurerm.connectivity
-  location = local.azure_region_location
+  location = local.alz_config.azure_region_location
   name     = local.vwan_parameters.rg_name
   tags     = local.common_tags
 
@@ -20,7 +20,7 @@ module "virtual_wan_hub" {
     azurerm = azurerm.connectivity
   }
 
-  enable_telemetry = local.avm_telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
+  enable_telemetry = local.alz_config.telemery_enable # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
   tags             = local.common_tags
 
   virtual_wan_settings = {
@@ -29,6 +29,7 @@ module "virtual_wan_hub" {
     }
     virtual_wan = {
       name                           = local.vwan_parameters.name
+      location                       = local.alz_config.azure_region_location
       type                           = local.vwan_parameters.type
       allow_branch_to_branch_traffic = local.vwan_parameters.allow_branch_to_branch_traffic
     }
@@ -36,9 +37,8 @@ module "virtual_wan_hub" {
 
   virtual_hubs = {
     primary = {
-      location = local.azure_region_location
-      # default_hub_address_space = "10.225.0.0/22"
-      default_parent_id = resource.azurerm_resource_group.rg_nw_vwan.id
+      location          = local.alz_config.azure_region_location
+      default_parent_id = resource.azurerm_resource_group.rg_nw_001.id
       hub = {
         name                   = local.vwan_hub_parameters.name
         address_prefix         = local.vwan_hub_parameters.address_prefix
@@ -55,11 +55,17 @@ module "virtual_wan_hub" {
         sidecar_virtual_network               = false
       }
       virtual_network_connections = {
-        platform_vnet = {
-          name                      = local.platform_vnet_hub_connection.name
-          remote_virtual_network_id = module.platform_vnet.resource_id
+        platform_vnet_001 = {
+          name                      = local.platform_vnet_001.hub_connection_name
+          remote_virtual_network_id = module.platform_vnet_001.resource_id
           internet_security_enabled = false # Needs to be revisited after establishing VPN/ER connection
         }
+        platform_vnet_002 = {
+          name                      = local.platform_vnet_002.hub_connection_name
+          remote_virtual_network_id = module.platform_vnet_002.resource_id
+          internet_security_enabled = false # Needs to be revisited after establishing VPN/ER connection
+        }
+
       }
     }
   }

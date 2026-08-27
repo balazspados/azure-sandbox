@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.15.8"
+  required_version = ">= 1.15.8, <2.0.0"
 
   required_providers {
     azurerm = {
@@ -19,11 +19,11 @@ provider "azurerm" {
       prevent_deletion_if_contains_resources = true
     }
   }
-  subscription_id = local.subscription_ids.management
-  tenant_id       = local.azure_tenant_id
+  subscription_id = local.alz_config.management_subscription_id
+  tenant_id       = local.alz_config.azure_tenant_id
 
 }
 
 provider "azuread" {
-  tenant_id = local.azure_tenant_id
+  tenant_id = local.alz_config.azure_tenant_id
 }

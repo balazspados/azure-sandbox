@@ -1,6 +1,3 @@
-output "avm_telemery_enable" {
-  value = local.avm_telemery_enable
-}
 
 output "group_object_ids" {
   description = "Map of group_name => Entra ID object ID, for every group defined in var.rbac_group_definitions."

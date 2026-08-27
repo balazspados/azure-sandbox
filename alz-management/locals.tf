@@ -10,5 +10,5 @@ locals {
 
   }
 
-  alz_resource_instace_number = "001"
+  alz_resource_instance_number = "001"
 }

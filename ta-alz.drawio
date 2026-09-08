@@ -7,7 +7,7 @@
         <mxCell id="gjYJSXdUPj4CGP5F8UbZ-13" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="150" width="270" x="530" y="40" as="geometry" />
         </mxCell>
-        <mxCell id="gjYJSXdUPj4CGP5F8UbZ-1" parent="gjYJSXdUPj4CGP5F8UbZ-13" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;verticalAlign=top;align=right;strokeColor=#9933FF;container=0;" value="&lt;span style=&quot;color: rgb(153, 51, 255);&quot;&gt;Hashicorp&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(153, 51, 255);&quot;&gt;Cloud&lt;/span&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="gjYJSXdUPj4CGP5F8UbZ-1" parent="gjYJSXdUPj4CGP5F8UbZ-13" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;verticalAlign=top;align=right;strokeColor=#9933FF;container=0;" value="&lt;span style=&quot;color: rgb(153, 51, 255);&quot;&gt;HashiCorp&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(153, 51, 255);&quot;&gt;Cloud&lt;/span&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="150" width="270" as="geometry" />
         </mxCell>
         <mxCell id="gjYJSXdUPj4CGP5F8UbZ-7" connectable="0" parent="gjYJSXdUPj4CGP5F8UbZ-13" style="group;strokeColor=none;container=0;" value="" vertex="1">

@@ -296,8 +296,8 @@
         <mxCell id="JC5rFGvSTxXU7xteDmVr-5" parent="JC5rFGvSTxXU7xteDmVr-2" style="rounded=0;whiteSpace=wrap;html=1;textDirection=vertical-lr;rotation=-180;" value="variables" vertex="1">
           <mxGeometry height="60" width="20" as="geometry" />
         </mxCell>
-        <mxCell id="JC5rFGvSTxXU7xteDmVr-6" parent="JC5rFGvSTxXU7xteDmVr-1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;verticalAlign=top;" value="&lt;div&gt;Deploys:&lt;/div&gt;- LAW - security&lt;div&gt;- Recover Service Vault - identity&lt;/div&gt;&lt;div&gt;- Key Vault - Identity&lt;br&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="200" x="280" y="280" as="geometry" />
+        <mxCell id="JC5rFGvSTxXU7xteDmVr-6" parent="JC5rFGvSTxXU7xteDmVr-1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;verticalAlign=top;" value="&lt;div&gt;Deploys:&lt;/div&gt;- LAW - security&lt;div&gt;- Recover Service Vault - identity&lt;/div&gt;&lt;div&gt;- Key Vault - Identity&lt;/div&gt;&lt;div&gt;- Disk Encryption Set - Identity&lt;br&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="240" x="260" y="280" as="geometry" />
         </mxCell>
         <mxCell id="JC5rFGvSTxXU7xteDmVr-7" parent="JC5rFGvSTxXU7xteDmVr-1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Remote state inputs:&lt;br&gt;&lt;div&gt;- alz_config values&lt;/div&gt;&lt;div&gt;- Private DNS zone IDs&lt;/div&gt;&lt;div&gt;- Private Endpoints subnet ID&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Configuration values in &quot;locals&quot; files&lt;/div&gt;" vertex="1">
           <mxGeometry height="200" width="180" x="40" y="280" as="geometry" />

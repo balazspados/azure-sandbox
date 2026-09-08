@@ -113,6 +113,28 @@
         <mxCell id="gjYJSXdUPj4CGP5F8UbZ-12" edge="1" parent="1" source="00PATfaGRbHVJTVCO9H5-2" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=30.65463038853236;entryPerimeter=0;strokeColor=#9933FF;dashed=1;" target="gjYJSXdUPj4CGP5F8UbZ-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="cKyfiQiSluBC0hYIy5_W-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;rounded=0;" value="Legend:&lt;div&gt;&lt;br&gt;&lt;div&gt;TF state sync&lt;/div&gt;&lt;/div&gt;&lt;div&gt;TF remote state state data&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="40" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="cKyfiQiSluBC0hYIy5_W-2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9933FF;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="520" />
+              <mxPoint x="220" y="520" />
+            </Array>
+            <mxPoint x="200" y="520" as="sourcePoint" />
+            <mxPoint x="240" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cKyfiQiSluBC0hYIy5_W-4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="539.8" as="sourcePoint" />
+            <mxPoint x="240" y="539.8" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TXARlonS84wsNoUujWet-1" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;align=left;verticalAlign=top;" value="- set service principal" vertex="1">
+          <mxGeometry height="80" width="120" x="30" y="230" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -136,8 +158,8 @@
         <mxCell id="cY8Cz4X1UhezdDI_eaJn-6" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;verticalAlign=top;" value="&lt;div&gt;Deploys:&lt;/div&gt;&lt;div&gt;- LAW - platform&lt;br&gt;&lt;div&gt;- Policies&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;- definitions&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;- associations&lt;br&gt;&lt;/div&gt;&lt;div&gt;- Management Groups&lt;br&gt;&lt;/div&gt;&lt;div&gt;- Resource Guard Deployment&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="200" width="260" x="260" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="cY8Cz4X1UhezdDI_eaJn-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Inputs:&lt;div&gt;- common tag values&lt;/div&gt;&lt;div&gt;- platform subscription IDs&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="120" x="80" y="280" as="geometry" />
+        <mxCell id="cY8Cz4X1UhezdDI_eaJn-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Configuration values in &quot;locals&quot; files&amp;nbsp;&lt;br&gt;&lt;div&gt;- common tag values&lt;/div&gt;&lt;div&gt;- platform subscription IDs&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="160" x="40" y="280" as="geometry" />
         </mxCell>
         <mxCell id="cY8Cz4X1UhezdDI_eaJn-10" edge="1" parent="1" source="cY8Cz4X1UhezdDI_eaJn-4" style="shape=flexArrow;endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=3;endSize=5;sourcePerimeterSpacing=0;endWidth=4;width=4;" target="cY8Cz4X1UhezdDI_eaJn-9" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -183,8 +205,8 @@
         <mxCell id="z51w2MAFE49g1I7NHRVe-6" parent="z51w2MAFE49g1I7NHRVe-1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;verticalAlign=top;" value="&lt;div&gt;Deploys:&lt;/div&gt;&lt;div&gt;&lt;div&gt;- RBAC groups&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="200" width="260" x="260" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="z51w2MAFE49g1I7NHRVe-7" parent="z51w2MAFE49g1I7NHRVe-1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Inputs:&lt;/span&gt;&lt;div&gt;&lt;div&gt;- alz_config values&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="120" x="80" y="280" as="geometry" />
+        <mxCell id="z51w2MAFE49g1I7NHRVe-7" parent="z51w2MAFE49g1I7NHRVe-1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Remote state inputs:&lt;/span&gt;&lt;div&gt;&lt;div&gt;- alz_config values&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Configuration values in &quot;locals&quot; files&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="180" x="40" y="280" as="geometry" />
         </mxCell>
         <mxCell id="z51w2MAFE49g1I7NHRVe-8" edge="1" parent="z51w2MAFE49g1I7NHRVe-1" source="z51w2MAFE49g1I7NHRVe-5" style="shape=flexArrow;endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=3;endSize=5;sourcePerimeterSpacing=0;endWidth=4;width=4;" target="z51w2MAFE49g1I7NHRVe-7" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -230,7 +252,7 @@
         <mxCell id="xTchmdIFWqsL-voNich8-6" parent="xTchmdIFWqsL-voNich8-1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;verticalAlign=top;" value="&lt;div&gt;Deploys:&lt;/div&gt;- vWAN &amp;amp; vHub&lt;div&gt;&lt;div&gt;- vNet - platform&lt;/div&gt;&lt;div&gt;- vNet - identity&lt;/div&gt;&lt;div&gt;- VPN&lt;/div&gt;&lt;div&gt;- ExpressRoute&lt;/div&gt;&lt;div&gt;- Private DNS Zone&lt;/div&gt;&lt;div&gt;- Private DNS resolver&lt;/div&gt;&lt;div&gt;- NSG - platform&lt;/div&gt;&lt;div&gt;- NSG - identity&lt;/div&gt;&lt;div&gt;- Azure Bastion&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="200" width="200" x="330" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="xTchmdIFWqsL-voNich8-7" parent="xTchmdIFWqsL-voNich8-1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fontSize=12;" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Inputs:&lt;/span&gt;&lt;div&gt;&lt;div&gt;- alz_config values&lt;/div&gt;&lt;div&gt;- platform LAW ID&lt;/div&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="xTchmdIFWqsL-voNich8-7" parent="xTchmdIFWqsL-voNich8-1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fontSize=12;" value="Remote state inputs:&lt;br&gt;&lt;div&gt;&lt;div&gt;- alz_config values&lt;/div&gt;&lt;div&gt;- platform LAW ID&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Configuration values in &quot;locals&quot; files&lt;/div&gt;" vertex="1">
           <mxGeometry height="200" width="280" x="30" y="280" as="geometry" />
         </mxCell>
         <mxCell id="xTchmdIFWqsL-voNich8-8" edge="1" parent="xTchmdIFWqsL-voNich8-1" source="xTchmdIFWqsL-voNich8-5" style="shape=flexArrow;endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=3;endSize=5;sourcePerimeterSpacing=0;endWidth=4;width=4;" target="xTchmdIFWqsL-voNich8-7" value="">
@@ -277,8 +299,8 @@
         <mxCell id="JC5rFGvSTxXU7xteDmVr-6" parent="JC5rFGvSTxXU7xteDmVr-1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;verticalAlign=top;" value="&lt;div&gt;Deploys:&lt;/div&gt;- LAW - security&lt;div&gt;- Recover Service Vault - identity&lt;/div&gt;&lt;div&gt;- Key Vault - Identity&lt;br&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="200" width="200" x="280" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="JC5rFGvSTxXU7xteDmVr-7" parent="JC5rFGvSTxXU7xteDmVr-1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Inputs:&lt;div&gt;- alz_config values&lt;/div&gt;&lt;div&gt;- Private DNS zone IDs&lt;/div&gt;&lt;div&gt;- Private Endpoints subnet ID&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="140" x="80" y="280" as="geometry" />
+        <mxCell id="JC5rFGvSTxXU7xteDmVr-7" parent="JC5rFGvSTxXU7xteDmVr-1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Remote state inputs:&lt;br&gt;&lt;div&gt;- alz_config values&lt;/div&gt;&lt;div&gt;- Private DNS zone IDs&lt;/div&gt;&lt;div&gt;- Private Endpoints subnet ID&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Configuration values in &quot;locals&quot; files&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="180" x="40" y="280" as="geometry" />
         </mxCell>
         <mxCell id="JC5rFGvSTxXU7xteDmVr-8" edge="1" parent="JC5rFGvSTxXU7xteDmVr-1" source="JC5rFGvSTxXU7xteDmVr-5" style="shape=flexArrow;endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=3;endSize=5;sourcePerimeterSpacing=0;endWidth=4;width=4;" target="JC5rFGvSTxXU7xteDmVr-7" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">

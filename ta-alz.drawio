@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" pages="5">
   <diagram name="Overview" id="ctcwCwnq_cIMWCKWewao">
-    <mxGraphModel dx="779" dy="526" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1130" dy="690" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -113,7 +113,7 @@
         <mxCell id="gjYJSXdUPj4CGP5F8UbZ-12" edge="1" parent="1" source="00PATfaGRbHVJTVCO9H5-2" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=30.65463038853236;entryPerimeter=0;strokeColor=#9933FF;dashed=1;jumpStyle=arc;" target="gjYJSXdUPj4CGP5F8UbZ-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="cKyfiQiSluBC0hYIy5_W-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;rounded=0;" value="Legend:&lt;div&gt;&lt;br&gt;&lt;div&gt;TF state sync&lt;/div&gt;&lt;/div&gt;&lt;div&gt;TF remote state state data&amp;nbsp;&lt;/div&gt;" vertex="1">
+        <mxCell id="cKyfiQiSluBC0hYIy5_W-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;rounded=0;" value="Legend:&lt;div&gt;&lt;br&gt;&lt;div&gt;TF remote state sync&lt;/div&gt;&lt;/div&gt;&lt;div&gt;TF state consumer&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="120" width="200" x="40" y="480" as="geometry" />
         </mxCell>
         <mxCell id="cKyfiQiSluBC0hYIy5_W-2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9933FF;dashed=1;">
@@ -131,9 +131,6 @@
             <mxPoint x="200" y="539.8" as="sourcePoint" />
             <mxPoint x="240" y="539.8" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="TXARlonS84wsNoUujWet-1" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;align=left;verticalAlign=top;" value="- set service principal" vertex="1">
-          <mxGeometry height="80" width="120" x="30" y="230" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

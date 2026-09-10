@@ -139,7 +139,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="53c50XEg-uRK1c4QUGgi" name="alz-core">
-    <mxGraphModel dx="1130" dy="763" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1130" dy="690" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -156,10 +156,10 @@
           <mxGeometry height="60" width="20" as="geometry" />
         </mxCell>
         <mxCell id="cY8Cz4X1UhezdDI_eaJn-6" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;align=left;verticalAlign=top;" value="&lt;div&gt;Deploys:&lt;/div&gt;&lt;div&gt;- LAW - platform&lt;br&gt;&lt;div&gt;- Policies&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;- definitions&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;- associations&lt;br&gt;&lt;/div&gt;&lt;div&gt;- Management Groups&lt;br&gt;&lt;/div&gt;&lt;div&gt;- Resource Guard Deployment&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="260" x="260" y="280" as="geometry" />
+          <mxGeometry height="160" width="260" x="260" y="280" as="geometry" />
         </mxCell>
         <mxCell id="cY8Cz4X1UhezdDI_eaJn-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Configuration values in &quot;locals&quot; files&amp;nbsp;&lt;br&gt;&lt;div&gt;- common tag values&lt;/div&gt;&lt;div&gt;- platform subscription IDs&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="160" x="40" y="280" as="geometry" />
+          <mxGeometry height="160" width="160" x="40" y="280" as="geometry" />
         </mxCell>
         <mxCell id="cY8Cz4X1UhezdDI_eaJn-10" edge="1" parent="1" source="cY8Cz4X1UhezdDI_eaJn-4" style="shape=flexArrow;endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=3;endSize=5;sourcePerimeterSpacing=0;endWidth=4;width=4;" target="cY8Cz4X1UhezdDI_eaJn-9" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -173,8 +173,8 @@
             <mxPoint x="250" y="380" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cY8Cz4X1UhezdDI_eaJn-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Outputs:&lt;div&gt;- alz_config values&lt;/div&gt;&lt;div&gt;- platform LAW ID&lt;/div&gt;&lt;div&gt;- Resource Guard ID&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="160" x="580" y="280" as="geometry" />
+        <mxCell id="cY8Cz4X1UhezdDI_eaJn-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Outputs values:&lt;div&gt;- alz_config values&lt;/div&gt;&lt;div&gt;- platform LAW ID&lt;/div&gt;&lt;div&gt;- Resource Guard ID&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="160" x="580" y="280" as="geometry" />
         </mxCell>
         <mxCell id="cY8Cz4X1UhezdDI_eaJn-13" edge="1" parent="1" source="cY8Cz4X1UhezdDI_eaJn-3" style="shape=flexArrow;endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startSize=3;endSize=5;sourcePerimeterSpacing=0;endWidth=4;width=4;" target="cY8Cz4X1UhezdDI_eaJn-12" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">

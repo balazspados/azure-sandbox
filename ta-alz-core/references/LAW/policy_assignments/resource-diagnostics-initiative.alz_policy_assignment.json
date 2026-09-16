@@ -1,0 +1,35 @@
+{
+  "name": "TA-Diag-ResourceDiag",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2023-04-01",
+  "scope": "${current_scope_resource_id}",
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "location": "australiaeast",
+  "properties": {
+    "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policySetDefinitions/TA-Diag-ResourceDiagnostics",
+    "displayName": "TA Apply custom diagnostic settings for applicable resources to Log Analytics",
+    "description": "Assigns the custom TA diagnostic-settings initiative (for resource types not covered by the built-in allLogs category group initiative) to stream logs and metrics to the centralised Log Analytics workspace.",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Resource is missing required diagnostic settings to the centralised Log Analytics workspace."
+      }
+    ],
+    "parameters": {
+      "logAnalytics": {
+        "value": "__REPLACE_WITH_CENTRALISED_LAW_RESOURCE_ID__"
+      },
+      "defaultProfileName": {
+        "value": "deployedByPolicy"
+      },
+      "logsEnabled": {
+        "value": "True"
+      },
+      "metricsDisabled": {
+        "value": "False"
+      }
+    }
+  }
+}

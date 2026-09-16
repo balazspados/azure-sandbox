@@ -1,0 +1,35 @@
+{
+  "name": "TA-Diag-AllLogsCatGroup",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2023-04-01",
+  "scope": "${current_scope_resource_id}",
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "location": "australiaeast",
+  "properties": {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/0884adba-2312-4468-abeb-5422caed1038",
+    "displayName": "TA Apply allLogs category group diagnostic settings for supported resources to Log Analytics",
+    "description": "Assigns the built-in Azure Policy initiative that deploys allLogs category group diagnostic settings to the centralised Log Analytics workspace for all supported resource types.",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Resource is missing required allLogs category group diagnostic settings to the centralised Log Analytics workspace."
+      }
+    ],
+    "parameters": {
+      "effect": {
+        "value": "DeployIfNotExists"
+      },
+      "diagnosticSettingName": {
+        "value": "deployedByPolicy"
+      },
+      "logAnalytics": {
+        "value": "__REPLACE_WITH_CENTRALISED_LAW_RESOURCE_ID__"
+      },
+      "resourceLocationList": {
+        "value": ["*"]
+      }
+    }
+  }
+}

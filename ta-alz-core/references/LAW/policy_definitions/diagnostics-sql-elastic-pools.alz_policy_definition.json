@@ -1,0 +1,130 @@
+{
+  "name": "TA-Diag-SQLElasticPools",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2023-04-01",
+  "scope": "${root_scope_resource_id}",
+  "properties": {
+    "displayName": "TA Apply diagnostic settings for SQL Elastic Pools to Log Analytics",
+    "description": "Deploys diagnostic settings for SQL Elastic Pools to stream logs and metrics to a Log Analytics workspace when any SQL Elastic Pool missing this diagnostic setting is created or updated.",
+    "mode": "Indexed",
+    "policyType": "Custom",
+    "metadata": {
+      "category": "Monitoring",
+      "version": "1.0.0"
+    },
+    "parameters": {
+      "logAnalytics": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Log Analytics workspace",
+          "description": "Log Analytics workspace to which SQL Elastic Pools diagnostic logs should be streamed.",
+          "strongType": "omsWorkspace",
+          "assignPermissions": true
+        }
+      },
+      "defaultProfileName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Profile name",
+          "description": "The name of the diagnostic settings profile."
+        },
+        "defaultValue": "setbypolicy-LogAnalytics"
+      },
+      "logsEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Enable logs",
+          "description": "Whether to stream logs to the Log Analytics workspace - True or False."
+        },
+        "allowedValues": ["True", "False"],
+        "defaultValue": "True"
+      },
+      "metricsDisabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Disable metrics",
+          "description": "Whether to disable streaming metrics to the Log Analytics workspace - True or False."
+        },
+        "allowedValues": ["True", "False"],
+        "defaultValue": "False"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.Sql/servers/elasticPools"
+      },
+      "then": {
+        "effect": "deployIfNotExists",
+        "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                "equals": "[parameters('logsEnabled')]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                "equals": "[parameters('logAnalytics')]"
+              }
+            ]
+          },
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+          ],
+          "deployment": {
+            "properties": {
+              "mode": "incremental",
+              "template": {
+                "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                "contentVersion": "1.0.0.0",
+                "parameters": {
+                  "resourceName": { "type": "string" },
+                  "logAnalytics": { "type": "string" },
+                  "defaultProfileName": { "type": "string" },
+                  "logsEnabled": { "type": "string" },
+                  "metricsDisabled": { "type": "string" }
+                },
+                "resources": [
+                  {
+                    "type": "Microsoft.Sql/servers/elasticPools/providers/diagnosticSettings",
+                    "apiVersion": "2021-05-01-preview",
+                    "name": "[concat(parameters('resourceName'), '/Microsoft.Insights/', parameters('defaultProfileName'))]",
+                    "properties": {
+                      "workspaceId": "[parameters('logAnalytics')]",
+                      "metrics": [
+                        {
+                          "category": "Basic",
+                          "enabled": "[not(parameters('metricsDisabled'))]"
+                        }
+                      ],
+                      "logs": [
+                        { "category": "SQLInsights", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "AutomaticTuning", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "QueryStoreRuntimeStatistics", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "QueryStoreWaitStatistics", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "Errors", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "DatabaseWaitStatistics", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "Timeouts", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "Blocks", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "Deadlocks", "enabled": "[parameters('logsEnabled')]" }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "resourceName": { "value": "[field('fullName')]" },
+                "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+                "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+                "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+                "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

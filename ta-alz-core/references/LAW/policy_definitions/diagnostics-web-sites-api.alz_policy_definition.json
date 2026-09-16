@@ -1,0 +1,128 @@
+{
+  "name": "TA-Diag-WebSitesAPI",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2023-04-01",
+  "scope": "${root_scope_resource_id}",
+  "properties": {
+    "displayName": "TA Apply diagnostic settings for Azure Web Sites API to Log Analytics",
+    "description": "Deploys diagnostic settings for Azure Web Sites API apps to stream logs and metrics to a Log Analytics workspace when any API app missing this diagnostic setting is created or updated.",
+    "mode": "Indexed",
+    "policyType": "Custom",
+    "metadata": {
+      "category": "Monitoring",
+      "version": "1.0.0"
+    },
+    "parameters": {
+      "logAnalytics": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Log Analytics workspace",
+          "description": "Log Analytics workspace to which API app diagnostic logs should be streamed.",
+          "strongType": "omsWorkspace",
+          "assignPermissions": true
+        }
+      },
+      "defaultProfileName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Profile name",
+          "description": "The name of the diagnostic settings profile."
+        },
+        "defaultValue": "setbypolicy-LogAnalytics"
+      },
+      "logsEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Enable logs",
+          "description": "Whether to stream logs to the Log Analytics workspace - True or False."
+        },
+        "allowedValues": ["True", "False"],
+        "defaultValue": "True"
+      },
+      "metricsDisabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Disable metrics",
+          "description": "Whether to disable streaming metrics to the Log Analytics workspace - True or False."
+        },
+        "allowedValues": ["True", "False"],
+        "defaultValue": "False"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.Web/sites" },
+          { "field": "kind", "like": "*api*" }
+        ]
+      },
+      "then": {
+        "effect": "deployIfNotExists",
+        "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                "equals": "[parameters('logsEnabled')]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                "equals": "[parameters('logAnalytics')]"
+              }
+            ]
+          },
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+          ],
+          "deployment": {
+            "properties": {
+              "mode": "incremental",
+              "template": {
+                "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                "contentVersion": "1.0.0.0",
+                "parameters": {
+                  "resourceName": { "type": "string" },
+                  "logAnalytics": { "type": "string" },
+                  "defaultProfileName": { "type": "string" },
+                  "logsEnabled": { "type": "string" },
+                  "metricsDisabled": { "type": "string" }
+                },
+                "resources": [
+                  {
+                    "type": "Microsoft.Web/sites/providers/diagnosticSettings",
+                    "apiVersion": "2021-05-01-preview",
+                    "name": "[concat(parameters('resourceName'), '/Microsoft.Insights/', parameters('defaultProfileName'))]",
+                    "properties": {
+                      "workspaceId": "[parameters('logAnalytics')]",
+                      "metrics": [
+                        {
+                          "category": "AllMetrics",
+                          "enabled": "[not(parameters('metricsDisabled'))]"
+                        }
+                      ],
+                      "logs": [
+                        { "category": "AppServiceHTTPLogs", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "AppServiceConsoleLogs", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "AppServiceAppLogs", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "AppServiceAuditLogs", "enabled": "[parameters('logsEnabled')]" },
+                        { "category": "AppServicePlatformLogs", "enabled": "[parameters('logsEnabled')]" }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "resourceName": { "value": "[field('name')]" },
+                "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+                "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+                "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+                "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

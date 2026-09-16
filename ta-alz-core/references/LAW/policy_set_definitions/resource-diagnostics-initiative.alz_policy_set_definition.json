@@ -1,0 +1,173 @@
+{
+  "name": "TA-Diag-ResourceDiagnostics",
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2023-04-01",
+  "scope": "${root_scope_resource_id}",
+  "properties": {
+    "displayName": "TA Apply diagnostic settings for applicable resources to Log Analytics",
+    "description": "Groups the custom TA diagnostic-settings policy definitions (for resource types not covered by the built-in Azure diagnostics initiative) so they can be assigned together to the Root Management group.",
+    "policyType": "Custom",
+    "metadata": {
+      "category": "Monitoring",
+      "version": "1.0.0"
+    },
+    "parameters": {
+      "logAnalytics": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Log Analytics workspace",
+          "description": "Log Analytics workspace to which diagnostic logs should be streamed.",
+          "strongType": "omsWorkspace",
+          "assignPermissions": true
+        }
+      },
+      "defaultProfileName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Profile name",
+          "description": "The name of the diagnostic settings profile."
+        },
+        "defaultValue": "setbypolicy-LogAnalytics"
+      },
+      "logsEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Enable logs",
+          "description": "Whether to stream logs to the Log Analytics workspace - True or False."
+        },
+        "allowedValues": ["True", "False"],
+        "defaultValue": "True"
+      },
+      "metricsDisabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Disable metrics",
+          "description": "Whether to disable streaming metrics to the Log Analytics workspace - True or False."
+        },
+        "allowedValues": ["True", "False"],
+        "defaultValue": "False"
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "TA-Diag-AppServices",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-AppServices",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-AppServicesLinuxContainers",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-AppServicesLinuxContainers",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-AKS",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-AKS",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-WebSitesAPI",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-WebSitesAPI",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-WebSitesFunctionApp",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-WebSitesFunctionApp",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-EventGridSub",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-EventGridSub",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-HDInsight",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-HDInsight",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-SQLElasticPools",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-SQLElasticPools",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-StorageBlob",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-StorageBlob",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-StorageFile",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-StorageFile",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-StorageQueue",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-StorageQueue",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "TA-Diag-StorageTable",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/alz/providers/Microsoft.Authorization/policyDefinitions/TA-Diag-StorageTable",
+        "parameters": {
+          "logAnalytics": { "value": "[parameters('logAnalytics')]" },
+          "defaultProfileName": { "value": "[parameters('defaultProfileName')]" },
+          "logsEnabled": { "value": "[parameters('logsEnabled')]" },
+          "metricsDisabled": { "value": "[parameters('metricsDisabled')]" }
+        }
+      }
+    ]
+  }
+}

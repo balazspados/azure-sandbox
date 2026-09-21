@@ -9,13 +9,13 @@ output "alz_config" {
     platform_costcenter                 = local.alz_config.platform_costcenter
     environment                         = local.alz_config.environment
     telemetry_enabled                   = local.alz_config.telemetry_enabled
-    management_subscription_id          = local.alz_config.management_subscription_id
+    management_subscription_id          = module.subscription_management.subscription_id
     management_subscription_MG_name     = local.alz_config.management_subscription_MG_name
-    connectivity_subscription_id        = local.alz_config.connectivity_subscription_id
+    connectivity_subscription_id        = module.subscription_connectivity.subscription_id
     connectivity_subscription_MG_name   = local.alz_config.connectivity_subscription_MG_name
-    identity_subscription_id            = local.alz_config.identity_subscription_id
+    identity_subscription_id            = module.subscription_identity.subscription_id
     identity_subscription_MG_name       = local.alz_config.identity_subscription_MG_name
-    security_subscription_id            = local.alz_config.security_subscription_id
+    security_subscription_id            = module.subscription_security.subscription_id
     security_subscription_MG_name       = local.alz_config.security_subscription_MG_name
     azure_tenant_id                     = local.alz_config.azure_tenant_id
     resource_lock_kind                  = local.alz_config.resource_lock_kind
@@ -51,3 +51,4 @@ output "rg_management" {
     name = azurerm_resource_group.rg_management.name
   }
 }
+

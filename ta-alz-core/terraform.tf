@@ -14,6 +14,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 4.81" # https://github.com/hashicorp/terraform-provider-azurerm
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.7" # https://github.com/hashicorp/terraform-provider-random
+    }
   }
 }
 
@@ -69,6 +73,11 @@ provider "azurerm" {
   subscription_id = local.alz_config.connectivity_subscription_id
 }
 
+provider "azapi" {
+  alias           = "connectivity"
+  subscription_id = local.alz_config.connectivity_subscription_id
+}
+
 provider "azurerm" {
   alias = "identity"
   features {
@@ -93,3 +102,4 @@ provider "azapi" {
   alias           = "security"
   subscription_id = local.alz_config.security_subscription_id
 }
+

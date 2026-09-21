@@ -15,7 +15,8 @@ resource "azuread_group" "this" {
   display_name       = var.group_name
   description        = coalesce(var.description, local.default_description)
   security_enabled   = true
-  assignable_to_role = true
+  # assignable_to_role = true
+  assignable_to_role = var.assignment == "Eligible" # PIM eligible assignments require a role-assignable group (Entra ID Premium P1/P2); standing "Permanent" assignments don't.
 
   # "Assigned" membership type = static membership, i.e. no dynamic_membership
   # block. Entra ID does not allow dynamic membership on role-assignable groups,

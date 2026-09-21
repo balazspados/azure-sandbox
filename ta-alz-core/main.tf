@@ -70,19 +70,19 @@ module "alz_architecture" {
 
   subscription_placement = {
     management = {
-      subscription_id       = local.alz_config.management_subscription_id
+      subscription_id       = module.subscription_management.subscription_id
       management_group_name = local.alz_config.management_subscription_MG_name
     },
     connectivity = {
-      subscription_id       = local.alz_config.connectivity_subscription_id
+      subscription_id       = module.subscription_connectivity.subscription_id
       management_group_name = local.alz_config.connectivity_subscription_MG_name
     },
     identity = {
-      subscription_id       = local.alz_config.identity_subscription_id
+      subscription_id       = module.subscription_identity.subscription_id
       management_group_name = local.alz_config.identity_subscription_MG_name
     }
     security = {
-      subscription_id       = local.alz_config.security_subscription_id
+      subscription_id       = module.subscription_security.subscription_id
       management_group_name = local.alz_config.security_subscription_MG_name
     }
   }

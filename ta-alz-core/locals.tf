@@ -10,12 +10,12 @@ locals {
     management_subscription_MG_name   = "management" # Management Group ID
     connectivity_subscription_id      = "c7cf7d65-b00e-411a-b252-1394a56b3b5f"
     connectivity_subscription_MG_name = "connectivity" # Management Group ID
-    identity_subscription_id          = "701ff494-fc7f-4e23-8849-9220a67c8a5e"
-    identity_subscription_MG_name     = "identity" # Management Group ID
-    security_subscription_id          = "ce7da240-b2de-4cb5-a68b-ab14af2f4764"
-    security_subscription_MG_name     = "security" # Management Group ID
-    azure_tenant_id                   = "1c91a700-acbd-4ace-9ace-cb0c30144b54"
-    resource_lock_kind                = null # "CanNotDelete" (locked, can't be deleted), "ReadOnly" (locked, fully read-only), or null for no lock (default)
+    # identity_subscription_id          = "701ff494-fc7f-4e23-8849-9220a67c8a5e"
+    identity_subscription_MG_name = "identity" # Management Group ID
+    security_subscription_id      = "ce7da240-b2de-4cb5-a68b-ab14af2f4764"
+    security_subscription_MG_name = "security" # Management Group ID
+    azure_tenant_id               = "1c91a700-acbd-4ace-9ace-cb0c30144b54"
+    resource_lock_kind            = null # "CanNotDelete" (locked, can't be deleted), "ReadOnly" (locked, fully read-only), or null for no lock (default)
     # resource_lock_kind = "CanNotDelete"
   }
   common_tags = {

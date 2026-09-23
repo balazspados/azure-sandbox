@@ -36,3 +36,6 @@ tfplan
 
 #Exclude MacOS files
 .DS_Store
+
+#Exclude drawio backup files
+.bkp

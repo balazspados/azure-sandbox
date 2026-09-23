@@ -2,7 +2,9 @@
 # var.rbac_group_definitions (see variables.tf for the table itself, locals.tf
 # for how each row's scope is resolved).
 module "rbac_groups" {
-  source   = "./modules/iam-rbac-group"
+  # source   = "./modules/iam-rbac-group"
+  source  = "app.terraform.io/padi-org/ta-res-iam-rbac-group/azurerm"
+  version = "1.0.0"  
   for_each = local.rbac_groups
 
   group_name        = each.value.group_name

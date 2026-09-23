@@ -73,6 +73,11 @@ As of 2026-09-23:
 |---|---|---|---|
 | `ta-res-iam-rbac-group/azurerm` | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) |
 
+**Pre-production TODO:** `app.terraform.io/padi-org` is a dev-only private registry — the
+production private registry hasn't been decided yet. `ta-res-iam-rbac-group`'s `source` in
+`main.tf` will need to point at that production registry before this stack is applied to
+production.
+
 ## Configuration
 
 `terraform.tfvars`'s `rbac_group_definitions` is the single source of truth — adding a new

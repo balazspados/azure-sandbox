@@ -34,6 +34,11 @@ As of 2026-09-23, checked against the Terraform Registry:
 | `Azure/avm-res-maintenance-maintenanceconfiguration/azurerm` (used 3×) | Public | 0.1.0 | 0.1.0 |
 | `ta-res-azure-defender/azurerm` | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) |
 
+**Pre-production TODO:** `app.terraform.io/padi-org` is a dev-only private registry — the
+production private registry hasn't been decided yet. `ta-res-azure-defender`'s `source` in
+`main.defender.tf` will need to point at that production registry before this stack is applied
+to production.
+
 ## Identity Key Vault & Disk Encryption Set
 
 `main.kv-des-identity.tf`'s `module.key_vault_identity` (pinned `0.11.0`, see table above)

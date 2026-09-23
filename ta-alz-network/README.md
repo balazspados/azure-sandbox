@@ -101,6 +101,9 @@ distinct per-tunnel values (see the pre-production task list below) is more pres
 - [ ] **Add real forwarding rules** to the DNS Private Resolver's outbound ruleset
   (`main.pdns_resolver.tf`'s `forwarding_ruleset.onprem.rules`, currently `{}`) once there's an
   actual on-prem DNS server to forward to.
+- [ ] **Point `main.defender.tf`'s `ta-res-azure-defender` module at the production private
+  registry** once one exists — `app.terraform.io/padi-org` is dev-only (see Module versions
+  above).
 
 ## Module versions
 
@@ -116,6 +119,11 @@ As of 2026-09-23, checked against the Terraform Registry:
 | `Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm` | Public | 0.17.2 | 0.17.2 | Live — current |
 | `Azure/avm-res-network-bastionhost/azurerm` | Public | 0.9.0 | 0.9.0 | Live — current |
 | `Azure/avm-res-network-dnsresolver/azurerm` | Public | 0.8.0 | 0.8.0 | Live — current |
+
+**Pre-production TODO:** `app.terraform.io/padi-org` is a dev-only private registry — the
+production private registry hasn't been decided yet. `ta-res-azure-defender`'s `source` in
+`main.defender.tf` will need to point at that production registry before this stack is applied
+to production.
 
 ## Platform & Identity VNets
 
@@ -203,7 +211,10 @@ pinned `0.8.0`, see table above) deploys into `rg_nw_001`, tied to `platform_vne
   inline comment, real forwarding rules are pending an actual on-prem DNS server to forward to
   once VPN/ExpressRoute is live (see the pre-production task list above; VPN is live now, but the
   rules are still empty).
-- Its diagnostic setting sends `AllMetrics` 
+- Its diagnostic setting sends `AllMetrics` only — `Microsoft.Network/dnsResolvers` doesn't
+  support resource logs at all (per Azure Monitor's supported-logs reference, it has no log
+  categories, only metrics), unlike the VPN gateway's and Bastion's diagnostic settings, which
+  can and do send both.
 
 ## Microsoft Defender for Cloud
 

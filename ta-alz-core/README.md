@@ -79,6 +79,11 @@ Terraform Registry:
 | `Azure/avm-ptn-alz-sub-vending/azure` (used 4×) | Public | 0.3.2 | 0.3.2 |
 | `ta-res-azure-defender/azurerm` | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) |
 
+**Pre-production TODO:** `app.terraform.io/padi-org` is a dev-only private registry — the
+production private registry hasn't been decided yet. `ta-res-azure-defender`'s `source` in
+`main.defender.tf` will need to point at that production registry before this stack is applied
+to production.
+
 ## Management Landing Zone (`alz_management`)
 
 `main.tf` first creates the management resource group directly —

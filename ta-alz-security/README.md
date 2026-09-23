@@ -47,6 +47,11 @@ As of 2026-09-23, checked against the Terraform Registry:
 | `Azure/avm-res-operationalinsights-workspace/azurerm` | Public | 0.5.1 | 0.5.1 |
 | `ta-res-azure-defender/azurerm` | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) |
 
+**Pre-production TODO:** `app.terraform.io/padi-org` is a dev-only private registry — the
+production private registry hasn't been decided yet. `ta-res-azure-defender`'s `source` in
+`main.defender.tf` will need to point at that production registry before this stack is applied
+to production.
+
 ## Security Log Analytics Workspace
 
 `main.tf` first creates the security resource group directly —

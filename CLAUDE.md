@@ -1,7 +1,11 @@
 # Instructions for Claude
 
-- Never edit or write code files directly in this project. Only propose changes (e.g. as a diff, snippet, or description) 
-  and let the user apply them. Exception README.md and drawio files, which can be edited after approval. 
+- Never edit or write code files directly in this repository. "Code files" means any file that
+  is part of a module's actual configuration or behavior — `.tf`, `.tfvars`, `.json`, provider lock
+  files, `.tf.json`, scripts, etc. Only propose changes (e.g. as a diff, snippet, or description)
+  and let the user apply them.
+- Exception: `README.md` and `.drawio` files may be edited directly after the user approves the
+  change.
 - Prefer Azure Verified Modules (AVM) Terraform modules over direct resource creation.
 - README.md files must always include a reference of the module versions currently in use, paired with the latest version
   available as of the documentation date (module name, pinned version, latest available version, and the date checked).
@@ -25,4 +29,7 @@
   registry hasn't been decided yet. Any README documenting a module sourced from it should
   note this as a pre-production TODO (the module's `source` will need to change before a
   production apply).
-
+- Temporary working directory: `/Users/padi/code/temp` — use this for scratch files (e.g. a
+  generated diff or draft to show the user) rather than writing them into a module folder.
+- Never guess at ambiguous requirements, unknown values, or unclear scope — ask the user instead
+  of assuming.

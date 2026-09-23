@@ -38,4 +38,5 @@ tfplan
 .DS_Store
 
 #Exclude drawio backup files
-.bkp
+*.bkp
+

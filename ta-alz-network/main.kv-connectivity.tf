@@ -5,26 +5,26 @@ data "azurerm_client_config" "connectivity" {
 }
 
 
-# resource "azurerm_private_endpoint" "pep_key_vault_connectivity" {
-#   provider            = azurerm.connectivity
-#   name                = local.key_vault_connectivity_parameters.private_endpoint_name
-#   location            = local.alz_config.azure_region_location
-#   resource_group_name = local.key_vault_connectivity_parameters.private_endpoints_subnet_resource_group_name
-#   subnet_id           = local.key_vault_connectivity_parameters.private_endpoints_subnet_id
-#   tags                = local.common_tags
+resource "azurerm_private_endpoint" "pep_key_vault_connectivity" {
+  provider            = azurerm.connectivity
+  name                = local.key_vault_connectivity_parameters.private_endpoint_name
+  location            = local.alz_config.azure_region_location
+  resource_group_name = local.key_vault_connectivity_parameters.private_endpoints_subnet_resource_group_name
+  subnet_id           = local.key_vault_connectivity_parameters.private_endpoints_subnet_id
+  tags                = local.common_tags
 
-#   private_service_connection {
-#     name                           = "psc-${local.key_vault_connectivity_parameters.private_endpoint_name}"
-#     private_connection_resource_id = module.key_vault_identity.resource_id
-#     subresource_names              = ["vault"]
-#     is_manual_connection           = false
-#   }
+  private_service_connection {
+    name                           = "psc-${local.key_vault_connectivity_parameters.private_endpoint_name}"
+    private_connection_resource_id = module.key_vault_connectivity.resource_id
+    subresource_names              = ["vault"]
+    is_manual_connection           = false
+  }
 
-#   private_dns_zone_group {
-#     name                 = "dnslinktovnet"
-#     private_dns_zone_ids = [local.key_vault_connectivity_parameters.private_dns_zone_id]
-#   }
-# }
+  private_dns_zone_group {
+    name                 = "dnslinktovnet"
+    private_dns_zone_ids = [local.key_vault_connectivity_parameters.private_dns_zone_id]
+  }
+}
 
 ### Initial random VPN PSK needs to be overwritten when establishing the VPN connections
 resource "random_password" "temp_vpn_psk" {
@@ -52,8 +52,8 @@ module "key_vault_connectivity" {
   network_acls = {
     ### Mandatory to be set if disk encryption is enabled
     bypass = "AzureServices"
-    # default_action = "Deny"
-    default_action = "Allow" # TEMPORARY: revert to "Deny" once vWAN/vHub peering exists (no static IP to allowlist for the TFC run)
+    default_action = "Deny"
+    # default_action = "Allow" # TEMPORARY: revert to "Deny" once vWAN/vHub peering exists (no static IP to allowlist for the TFC run)
   }
   role_assignments = {
     deployment_user_kv_admin = {
@@ -61,11 +61,11 @@ module "key_vault_connectivity" {
       principal_id               = data.azurerm_client_config.connectivity.object_id
     }
   }
-  # diagnostic_settings = {
-  #   law = {
-  #     workspace_resource_id = local.security_log_analytics_workspace_id
-  #   }
-  # }
+  diagnostic_settings = {
+    law = {
+      workspace_resource_id = local.platform_log_analytics_workspace_id
+    }
+  }
 
   enable_telemetry = local.alz_config.telemetry_enabled # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
   tags             = local.common_tags

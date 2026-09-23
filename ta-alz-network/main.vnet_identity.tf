@@ -5,7 +5,7 @@
 
 module "identity_vnet_001" {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
-  version = "0.22.1" # https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest
+  version = "0.22.2" # https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest
 
   providers = {
     # azurerm = azurerm.identity

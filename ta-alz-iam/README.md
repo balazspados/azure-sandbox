@@ -3,7 +3,7 @@
 Terraform root module that deploys the platform's privileged-access model: one role-assignable
 Microsoft Entra ID security group plus one Azure RBAC role assignment per row of a table-driven
 definition (`var.rbac_group_definitions` in `terraform.tfvars`). Each row is expanded by
-`module.rbac_groups` (`main.tf`) into a call of the reusable `./modules/iam-rbac-group` module,
+`module.rbac_groups` (`main.tf`) into a call of the reusable `ta-res-iam-rbac-group` module,
 which creates the group and either a standing (`Permanent`) or PIM-eligible (`Eligible`) role
 assignment at the scope given by the row.
 
@@ -14,10 +14,6 @@ group / subscription IDs (`locals.tf`'s `scope_id_by_ref` map).
 
 ## Prerequisites
 
-- **`ta-alz-core` (workspace `alz`) already applied.** This stack's `locals.tf` reads
-  `data.terraform_remote_state.alz.outputs.management_group_resource_ids` and `.alz_config` — if
-  the core stack hasn't applied yet, or a `scope_key` used here doesn't exist in its output map,
-  `terraform plan` fails resolving `scope_id_by_ref`.
 - **HCP Terraform workspace `alz-iam`** (org `padi-org`, `backend.tf`), with OIDC auth configured
   for the `azurerm`/`azuread` providers against the management subscription and tenant
   (`terraform.tf`).
@@ -27,10 +23,11 @@ group / subscription IDs (`locals.tf`'s `scope_id_by_ref` map).
 ## Assignment model: `Permanent` vs `Eligible`, and today's state
 
 Every row in `terraform.tfvars` currently sets `assignment = "Permanent"` — a standing,
-always-on RBAC role assignment (`azurerm_role_assignment`, in
-`modules/iam-rbac-group/main.tf`). For the ten `-owner`/`-contributor` rows (root, core-networking,
-management, Identity, security — each at Owner and Contributor), the intended stricter alternative
-is already sketched in the file as a **commented-out** line directly above the active one, e.g.:
+always-on RBAC role assignment (`azurerm_role_assignment`, in the `ta-res-iam-rbac-group`
+module's `main.tf` — see Module versions below). For the ten `-owner`/`-contributor` rows (root,
+core-networking, management, Identity, security — each at Owner and Contributor), the intended
+stricter alternative is already sketched in the file as a **commented-out** line directly above
+the active one, e.g.:
 
 ```hcl
 # assignment        = "Eligible"
@@ -38,10 +35,11 @@ assignment        = "Permanent"
 ```
 
 `Eligible` switches that row to a PIM-eligible assignment
-(`azurerm_pim_eligible_role_assignment`) — members must activate the role through Privileged
-Identity Management rather than holding it standing. The `-reader` rows and the
-`azure-identity-backup-operator` / `azure-platform-kv-*` rows have no such commented alternative;
-they're only ever `Permanent` in this table today.
+(`azurerm_pim_eligible_role_assignment`, same module) — members must activate the role through
+Privileged Identity Management rather than holding it standing. The `-reader` rows and the
+`azure-identity-backup-operator` /
+`azure-platform-kv-*` rows have no such commented alternative; they're only ever `Permanent` in
+this table today.
 
 **Why it's `Permanent` everywhere right now:** a PIM-eligible assignment requires a
 role-assignable Entra ID group (`assignable_to_role = true` in the module, wired from
@@ -69,9 +67,11 @@ all ten rows at once), not a routine `tfvars` edit.
 
 ## Module versions
 
-As of 2026-09-22: this stack pins no versioned Terraform Registry modules — the only module in use
-is the local `./modules/iam-rbac-group` (path-sourced, not registry-versioned). There is nothing
-to check against the registry here.
+As of 2026-09-23:
+
+| Module | Registry | Pinned version | Latest available (2026-09-23) |
+|---|---|---|---|
+| `ta-res-iam-rbac-group/azurerm` | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) |
 
 ## Configuration
 
@@ -112,8 +112,3 @@ successfully, since its remote-state outputs are the source of every scope ID us
 - `role_assignment_ids` — map of `group_name` → RBAC role assignment ID (permanent or PIM-eligible,
   whichever applies).
 
-## Note on `terraform.tfvars` group naming
-
-Group names (`azure-root-owner`, `azure-core-networking-contributor`, etc.) follow the ALZ IAM
-design's own naming scheme rather than the repo-wide `<org_id>-<resource type>-...` convention
-used for Azure resources elsewhere — confirmed intentional, not a convention violation.

@@ -1,6 +1,5 @@
 locals {
   platform_bastion = {
-    rg_name                = "${local.alz_config.org_id}-rg-bastion-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-001"
     name                   = "${local.alz_config.org_id}-bastion-nw-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-001"
     sku                    = "Standard"
     copy_paste_enabled     = true  # Default: true

@@ -1,7 +1,6 @@
 
 locals {
   private_dns_resolver = {
-    rg_name = "${local.alz_config.org_id}-rg-dns-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-001"
     name    = "${local.alz_config.org_id}-dnspr-dns-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-001"
   }
 

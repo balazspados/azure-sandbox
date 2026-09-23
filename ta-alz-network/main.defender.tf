@@ -1,5 +1,6 @@
 module "defender_connectivity" {
-  source    = "./modules/DefenderForCloud"
+  source  = "app.terraform.io/padi-org/ta-res-azure-defender/azurerm"
+  version = "1.0.0"  
   providers = { azurerm = azurerm.connectivity }
 
   plans = {

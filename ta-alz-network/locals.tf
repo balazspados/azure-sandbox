@@ -25,7 +25,7 @@ locals {
   platform_rg_nw_004_name = "${local.alz_config.org_id}-rg-nw-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-004"
   platform_rg_nw_005_name = "${local.alz_config.org_id}-rg-nw-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-005"
   platform_rg_nw_006_name = "${local.alz_config.org_id}-rg-nw-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-006"
-  
+
 
   identity_rg_001_name = "${local.alz_config.org_id}-rg-idn-${local.alz_config.environment}-${local.alz_config.azure_region_location_short}-001"
 }

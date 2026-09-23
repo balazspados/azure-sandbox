@@ -84,7 +84,7 @@ resource "azurerm_management_lock" "rg_nw_004" {
   lock_level = local.alz_config.resource_lock_kind
 }
 
-### Create platform network 005 RG for Azure Bastion
+### Create platform network 005 RG for Azure Private Endpoints
 resource "azurerm_resource_group" "rg_nw_005" {
   provider = azurerm.connectivity
   location = local.alz_config.azure_region_location

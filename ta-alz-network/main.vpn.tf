@@ -49,7 +49,7 @@
 #     name             = local.otara_vpn_connection_parameters.vpn_link_name
 #     vpn_site_link_id = azurerm_vpn_site.otara.link[0].id
 #     protocol         = local.otara_vpn_connection_parameters.protocol
-#     shared_key       = var.otara_vpn_shared_key
+#     shared_key       = data.azurerm_key_vault_secret.vpn_psk_otara.value
 
 #     ipsec_policy {
 #       dh_group                 = local.otara_vpn_connection_parameters.ipsec_policy.dh_group
@@ -93,7 +93,7 @@
 #     name             = local.mtalbert_vpn_connection_parameters.vpn_link_name
 #     vpn_site_link_id = azurerm_vpn_site.mtalbert.link[0].id
 #     protocol         = local.mtalbert_vpn_connection_parameters.protocol
-#     shared_key       = var.mtalbert_vpn_shared_key
+#     shared_key       = data.azurerm_key_vault_secret.vpn_psk_mtalbert.value
 
 #     ipsec_policy {
 #       dh_group                 = local.mtalbert_vpn_connection_parameters.ipsec_policy.dh_group

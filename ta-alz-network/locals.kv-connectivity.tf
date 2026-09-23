@@ -13,8 +13,10 @@ locals {
     # private_endpoints_subnet_resource_group_name = data.terraform_remote_state.alz_network.outputs.private_endpoints_subnet.resource_group
     # private_dns_zone_id                          = data.terraform_remote_state.alz_network.outputs.private_dns_zone_resource_ids["azure_key_vault"]
 
-    vpn_psk_secret_name    = "vpn-psk-otara"
-    vpn_psk_secret_version = 1 # bump intentionally to push a newly-rotated PSK value; leave unchanged to preserve manual edits
+    vpn_psk_secret_name_otara    = "vpn-psk-otara"
+    vpn_psk_secret_name_mtalbert = "vpn-psk-mtalbert"
+    vpn_psk_secret_version       = 1 # leave unchanged to preserve manual edits
+
 
   }
 }

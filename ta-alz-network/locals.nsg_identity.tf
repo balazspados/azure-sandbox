@@ -77,8 +77,8 @@ locals {
         source_port_range       = "*"
         destination_address_prefixes = [
           local.identity_vnet_001.subnets.snet_identity.address_prefixes[0],
-          local.identity_vnet_001.subnets.snet_paw.address_prefixes[0]]
-        
+        local.identity_vnet_001.subnets.snet_paw.address_prefixes[0]]
+
 
         destination_port_ranges = ["3389"]
       }
@@ -92,7 +92,7 @@ locals {
         source_address_prefix      = "*"
         source_port_range          = "*"
         destination_address_prefix = "*"
-        destination_port_range    = "*"
+        destination_port_range     = "*"
       }
     }
   }

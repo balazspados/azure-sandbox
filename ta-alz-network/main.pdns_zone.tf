@@ -11,11 +11,11 @@ module "private_dns_zones" {
   enable_telemetry = local.alz_config.telemetry_enabled # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
   tags             = local.common_tags
 
-#   virtual_network_link_default_virtual_networks = {
-#     platform_vnet = {
-#       virtual_network_resource_id                 = module.platform_vnet_001.resource_id
-#       virtual_network_link_name_template_override = local.private_dns_zone_vnet_link.name_template # overwrites default naming convention 
-#     }
-#   }
+  #   virtual_network_link_default_virtual_networks = {
+  #     platform_vnet = {
+  #       virtual_network_resource_id                 = module.platform_vnet_001.resource_id
+  #       virtual_network_link_name_template_override = local.private_dns_zone_vnet_link.name_template # overwrites default naming convention 
+  #     }
+  #   }
 }
 

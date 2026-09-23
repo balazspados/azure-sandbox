@@ -8,7 +8,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-root-contributor"
@@ -18,7 +18,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-root-reader"
@@ -39,7 +39,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-core-networking-contributor"
@@ -49,7 +49,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-core-networking-reader"
@@ -68,7 +68,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-management-contributor"
@@ -78,7 +78,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-management-reader"
@@ -97,7 +97,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-Identity-contributor"
@@ -107,7 +107,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-Identity-reader"
@@ -126,7 +126,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-security-contributor"
@@ -136,7 +136,7 @@ rbac_group_definitions = [
     membership_type   = "Assigned"
     group_type        = "Security"
     # assignment        = "Eligible"
-    assignment        = "Permanent"
+    assignment = "Permanent"
   },
   {
     group_name        = "azure-security-reader"
@@ -156,31 +156,31 @@ rbac_group_definitions = [
     group_type        = "Security"
     assignment        = "Permanent"
   },
-{
-  group_name        = "azure-platform-kv-admin"
-  builtin_rbac_role = "Key Vault Administrator"
-  scope_type        = "management_group"
-  scope_key         = "platform"
-  membership_type   = "Assigned"
-  group_type        = "Security"
-  assignment        = "Permanent"
-},
-{
-  group_name        = "azure-platform-kv-reader"
-  builtin_rbac_role = "Key Vault Reader"
-  scope_type        = "management_group"
-  scope_key         = "platform"
-  membership_type   = "Assigned"
-  group_type        = "Security"
-  assignment        = "Permanent"
-},
-{
-  group_name        = "azure-platform-kv-contributor"
-  builtin_rbac_role = "Key Vault Contributor"
-  scope_type        = "management_group"
-  scope_key         = "platform"
-  membership_type   = "Assigned"
-  group_type        = "Security"
-  assignment        = "Permanent"
-},  
+  {
+    group_name        = "azure-platform-kv-admin"
+    builtin_rbac_role = "Key Vault Administrator"
+    scope_type        = "management_group"
+    scope_key         = "platform"
+    membership_type   = "Assigned"
+    group_type        = "Security"
+    assignment        = "Permanent"
+  },
+  {
+    group_name        = "azure-platform-kv-reader"
+    builtin_rbac_role = "Key Vault Reader"
+    scope_type        = "management_group"
+    scope_key         = "platform"
+    membership_type   = "Assigned"
+    group_type        = "Security"
+    assignment        = "Permanent"
+  },
+  {
+    group_name        = "azure-platform-kv-contributor"
+    builtin_rbac_role = "Key Vault Contributor"
+    scope_type        = "management_group"
+    scope_key         = "platform"
+    membership_type   = "Assigned"
+    group_type        = "Security"
+    assignment        = "Permanent"
+  },
 ]

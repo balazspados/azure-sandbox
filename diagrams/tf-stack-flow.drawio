@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net" agent="Claude Code" version="24.7.5" type="device">
+  <diagram name="TF Stack Flow" id="tf-stack-flow">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="azure-sandbox ALZ &amp;mdash; Terraform stack flow" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="600" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="core" value="&lt;b&gt;ta-alz-core&lt;/b&gt;&lt;div&gt;(HCP Terraform workspace: &lt;i&gt;alz&lt;/i&gt;)&lt;/div&gt;&lt;hr&gt;&lt;b&gt;Deploys:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;Management group hierarchy + policy (avm-ptn-alz)&lt;/li&gt;&lt;li&gt;Management LZ: LAW, Automation Account, DCRs, managed identity (avm-ptn-alz-management)&lt;/li&gt;&lt;li&gt;Subscription vending/placement: management, connectivity, security (adopted), identity (created)&lt;/li&gt;&lt;li&gt;Resource Guard deployment (MUA protection)&lt;/li&gt;&lt;li&gt;Defender for Cloud &amp;mdash; CloudPosture (management sub)&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Outputs:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;alz_config&lt;/li&gt;&lt;li&gt;platform_log_analytics_workspace_id&lt;/li&gt;&lt;li&gt;management_group_resource_ids&lt;/li&gt;&lt;li&gt;resource_guard_deployment_id&lt;/li&gt;&lt;li&gt;rg_management&lt;/li&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=11;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="630" y="60" width="380" height="270" as="geometry" />
+        </mxCell>
+
+        <mxCell id="network" value="&lt;b&gt;ta-alz-network&lt;/b&gt;&lt;div&gt;(workspace: &lt;i&gt;alz-network&lt;/i&gt;)&lt;/div&gt;&lt;hr&gt;&lt;b&gt;Deploys:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;7 resource groups (network + identity)&lt;/li&gt;&lt;li&gt;Platform VNet + Identity VNet (subnets)&lt;/li&gt;&lt;li&gt;NSGs (platform, identity)&lt;/li&gt;&lt;li&gt;Private DNS zone group&lt;/li&gt;&lt;li&gt;Key Vault (connectivity)&lt;/li&gt;&lt;li&gt;Defender for Cloud &amp;mdash; CloudPosture, KeyVaults&lt;/li&gt;&lt;li&gt;Virtual WAN + vHub &lt;i&gt;(temporarily disabled)&lt;/i&gt;&lt;/li&gt;&lt;li&gt;VPN gateway + S2S connections &lt;i&gt;(temporarily disabled)&lt;/i&gt;&lt;/li&gt;&lt;li&gt;DNS Private Resolver &lt;i&gt;(temporarily disabled)&lt;/i&gt;&lt;/li&gt;&lt;li&gt;Azure Bastion &lt;i&gt;(temporarily disabled)&lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Outputs:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;private_endpoints_subnet&lt;/li&gt;&lt;li&gt;rg_identity&lt;/li&gt;&lt;li&gt;private_dns_zone_resource_ids&lt;/li&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="140" y="440" width="340" height="310" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam" value="&lt;b&gt;ta-alz-iam&lt;/b&gt;&lt;div&gt;(workspace: &lt;i&gt;alz-iam&lt;/i&gt;)&lt;/div&gt;&lt;hr&gt;&lt;b&gt;Deploys:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;RBAC groups + role assignments, table-driven (19 groups across root / connectivity / management / identity / security / platform scopes)&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Outputs:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;group_object_ids&lt;/li&gt;&lt;li&gt;role_assignment_ids&lt;/li&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=11;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="950" y="440" width="320" height="170" as="geometry" />
+        </mxCell>
+
+        <mxCell id="identity" value="&lt;b&gt;ta-alz-identity&lt;/b&gt;&lt;div&gt;(workspace: &lt;i&gt;alz-identity&lt;/i&gt;)&lt;/div&gt;&lt;hr&gt;&lt;b&gt;Deploys:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;Key Vault + CMK, Disk Encryption Set&lt;/li&gt;&lt;li&gt;Recovery Services Vault (MUA via core's Resource Guard)&lt;/li&gt;&lt;li&gt;Update Manager maintenance configs (OS + Defender updates)&lt;/li&gt;&lt;li&gt;Defender for Cloud &amp;mdash; CloudPosture, VirtualMachines, KeyVaults&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Outputs:&lt;/b&gt;&lt;div&gt;&lt;i&gt;none currently exposed&lt;/i&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=11;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="360" y="800" width="360" height="200" as="geometry" />
+        </mxCell>
+
+        <mxCell id="security" value="&lt;b&gt;ta-alz-security&lt;/b&gt;&lt;div&gt;(workspace: &lt;i&gt;alz-security&lt;/i&gt;)&lt;/div&gt;&lt;hr&gt;&lt;b&gt;Deploys:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;LAW-security resource group + Log Analytics workspace&lt;/li&gt;&lt;li&gt;AMPLS + private endpoint&lt;/li&gt;&lt;li&gt;Defender for Cloud &amp;mdash; CloudPosture&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Outputs:&lt;/b&gt;&lt;div&gt;&lt;i&gt;none currently exposed&lt;/i&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="880" y="800" width="320" height="170" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-core-network" value="reads: alz_config,&#10;platform_log_analytics_workspace_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;endArrow=block;elbow=vertical;align=left;" edge="1" parent="1" source="core" target="network">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-core-iam" value="reads: alz_config,&#10;management_group_resource_ids" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;endArrow=block;elbow=vertical;align=left;" edge="1" parent="1" source="core" target="iam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-core-identity" value="reads: alz_config, rg_management,&#10;resource_guard_deployment_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;endArrow=block;elbow=vertical;align=left;" edge="1" parent="1" source="core" target="identity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-core-security" value="reads: alz_config" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;endArrow=block;elbow=vertical;align=left;" edge="1" parent="1" source="core" target="security">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-network-identity" value="reads: private_endpoints_subnet, rg_identity,&#10;private_dns_zone_resource_ids" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;endArrow=block;elbow=vertical;align=left;strokeColor=#82b366;" edge="1" parent="1" source="network" target="identity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-network-security" value="reads: private_endpoints_subnet,&#10;private_dns_zone_resource_ids" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=9;endArrow=block;elbow=vertical;align=left;strokeColor=#82b366;" edge="1" parent="1" source="network" target="security">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;div&gt;Arrow = &lt;i&gt;terraform_remote_state&lt;/i&gt; read (source workspace &amp;rarr; consumer)&lt;/div&gt;&lt;div&gt;Label = specific outputs consumed&lt;/div&gt;&lt;div&gt;Box color = one Terraform root module / HCP Terraform workspace&lt;/div&gt;" style="text;html=1;fontSize=11;align=left;verticalAlign=top;spacing=4;strokeColor=#666666;rounded=0;whiteSpace=wrap;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1080" width="480" height="90" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

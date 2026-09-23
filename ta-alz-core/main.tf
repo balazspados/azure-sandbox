@@ -1,6 +1,7 @@
 
-### Cretae ALZ-management resources
+### Create ALZ-management resources
 resource "azurerm_resource_group" "rg_management" {
+  provider = azurerm.management
   location = local.alz_config.azure_region_location
   name     = local.platform_base_parameters.rg_name
   tags     = local.common_tags
@@ -12,6 +13,7 @@ resource "azurerm_resource_group" "rg_management" {
 
 ### Set Resource lock on RG. All resources inherits it down in the resource group.
 resource "azurerm_management_lock" "rg_management" {
+  provider   = azurerm.management
   count      = local.alz_config.resource_lock_kind != null ? 1 : 0
   name       = "lock-${azurerm_resource_group.rg_management.name}"
   scope      = azurerm_resource_group.rg_management.id
@@ -21,6 +23,10 @@ resource "azurerm_management_lock" "rg_management" {
 module "alz_management" {
   source  = "Azure/avm-ptn-alz-management/azurerm"
   version = "0.9.0" # change this to your desired version, https://registry.terraform.io/modules/Azure/avm-ptn-alz-management/azurerm/latest
+  providers = {
+    azurerm = azurerm.management
+    azapi   = azapi.management
+  }
 
   location                                           = local.alz_config.azure_region_location
   log_analytics_workspace_name                       = local.platform_base_parameters.law_name

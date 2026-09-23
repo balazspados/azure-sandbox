@@ -4,8 +4,8 @@ module "resource_guard_deployment" {
   source  = "Azure/avm-res-dataprotection-resourceguard/azurerm"
   version = "0.1.0" # https://github.com/Azure/terraform-azurerm-avm-res-dataprotection-resourceguard
   providers = {
-    azurerm = azurerm.security
-    azapi   = azapi.security
+    azurerm = azurerm.management
+    azapi   = azapi.management
   }
   tags                                    = local.common_tags
   enable_telemetry                        = local.alz_config.telemetry_enabled # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/

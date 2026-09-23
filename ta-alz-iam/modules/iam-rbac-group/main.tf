@@ -12,9 +12,9 @@ data "azuread_client_config" "current" {}
 # group be targeted by an Azure RBAC role assignment (and is the Entra ID
 # requirement for a group to be used as a Privileged Access Group under PIM).
 resource "azuread_group" "this" {
-  display_name       = var.group_name
-  description        = coalesce(var.description, local.default_description)
-  security_enabled   = true
+  display_name     = var.group_name
+  description      = coalesce(var.description, local.default_description)
+  security_enabled = true
   # assignable_to_role = true
   assignable_to_role = var.assignment == "Eligible" # PIM eligible assignments require a role-assignable group (Entra ID Premium P1/P2); standing "Permanent" assignments don't.
 

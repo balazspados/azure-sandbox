@@ -71,22 +71,13 @@ filled in with real values when available.
 As of 2026-09-22, every AVM module this stack pins is on the latest version published to the
 Terraform Registry:
 
-| Module | Pinned version | Latest available (2026-09-22) |
-|---|---|---|
-| `Azure/avm-ptn-alz-management/azurerm` | 0.9.0 | 0.9.0 |
-| `Azure/avm-ptn-alz/azurerm` | 0.21.0 | 0.21.0 |
-| `Azure/avm-res-dataprotection-resourceguard/azurerm` | 0.1.0 | 0.1.0 (only release published) |
-| `Azure/avm-ptn-alz-sub-vending/azure` (used 4×) | 0.3.2 | 0.3.2 |
-
-Re-check with the Terraform Registry API before bumping any pin, e.g.:
-
-```zsh
-curl -s https://registry.terraform.io/v1/modules/Azure/avm-ptn-alz/azurerm/versions | jq -r '.modules[0].versions[].version'
-```
-
-`modules/DefenderForCloud` (used by `main.defender.tf`) is a local module, not published to the
-Terraform Registry, so it's intentionally not listed in the table above — see its provider
-version requirement in the section below.
+| Module | Registry | Pinned version | Latest available (2026-09-23) |
+|---|---|---|---|
+| `Azure/avm-ptn-alz-management/azurerm` | Public (`registry.terraform.io`) | 0.9.0 | 0.9.0 |
+| `Azure/avm-ptn-alz/azurerm` | Public (`registry.terraform.io`) | 0.21.0 | 0.21.0 |
+| `Azure/avm-res-dataprotection-resourceguard/azurerm` | Public (`registry.terraform.io`) | 0.1.0 | 0.1.0 (only release published) |
+| `Azure/avm-ptn-alz-sub-vending/azure` (used 4×) | Public (`registry.terraform.io`) | 0.3.2 | 0.3.2 |
+| `ta-res-azure-defender/azurerm` | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) |
 
 ## Management Landing Zone (`alz_management`)
 
@@ -106,15 +97,7 @@ by the module) via the `azurerm.management`/`azapi.management` provider aliases:
   — internet ingestion and query both explicitly disabled, retention set to 365 days (the module's
   defaults are enabled/enabled/30). Its resource ID is re-exported downstream via the
   `platform_log_analytics_workspace_id` output (see Outputs below).
-- **Automation Account** (`${org_id}-aa-mgmt-...`) — `public_network_access_enabled = false`. Per
-  the inline comment in `main.tf`, this is currently a mandatory parameter of the module rather
-  than something actively used yet.
-- **3 Data Collection Rules**: `change_tracking`, `vm_insights`, `defender_sql` (named only —
-  no DCR associations exist yet in this stack).
-- **1 user-assigned managed identity**, key `"ama"` (`${org_id}-uami-ama-...`).
 
-`enable_telemetry = local.alz_config.telemetry_enabled` (currently `false`) disables the module's
-own AVM usage telemetry, same as every other AVM module call in this stack.
 
 ## Subscription Vending
 
@@ -130,43 +113,41 @@ subscription from `subscription_alias_name`/`subscription_workload`/`subscriptio
 `subscription_update_existing`/a hardcoded `subscription_id`; management-group placement for all
 four is handled separately either way, by `module.alz_architecture`'s `subscription_placement`.
 
-**What's required before all four can actually be created this way:**
+## ALZ Architecture (`alz_architecture`)
 
-1. **Code change in `main.subscriptions.tf`.** `subscription_management`, `subscription_connectivity`,
-   and `subscription_security` currently use `subscription_update_existing = true` +
-   `subscription_id = local.alz_config.<x>_subscription_id` (adopting a pre-existing subscription).
-   These need to switch to `subscription_alias_enabled = true` +
-   `subscription_alias_name`/`subscription_workload`/`subscription_billing_scope`, mirroring
-   `subscription_identity`'s block exactly.
-2. **Code change in `locals.subscriptions.tf`.** `management_subscription_name`,
-   `connectivity_subscription_name`, and `security_subscription_name` are currently only used as
-   `subscription_display_name` — they'd need to also serve as `subscription_alias_name`, the way
-   `identity_subscription_name` already does.
-3. **A provider-configuration ordering problem — the actual blocker.** `terraform.tf` configures 4
-   subscription-aliased `azurerm`/`azapi` provider blocks (`management`, `connectivity`,
-   `identity`, `security`), each pinned to a static `subscription_id` read from `local.alz_config`.
-   Provider blocks are configured before any resource in this run is planned, so they can't
-   reference a subscription ID that this same run is about to create — and this is already
-   visibly broken for `identity` today: `identity_subscription_id` is commented out in `locals.tf`
-   (there's no subscription ID to hardcode yet), so `provider "azurerm" { alias = "identity" ...
-   subscription_id = local.alz_config.identity_subscription_id }` in `terraform.tf` references an
-   attribute `local.alz_config` doesn't actually have, which will fail plan/apply as currently
-   written. Moving management/connectivity/security to the same created-not-adopted model hits the
-   identical problem for all three.
+`module.alz_architecture` (`Azure/avm-ptn-alz/azurerm`, pinned `0.21.0`, see table above) deploys
+the platform's management-group hierarchy and Azure Policy overlay, from this repo's custom ALZ
+library under `lib/`, rather than the module's stock `alz` architecture:
 
-   One of the following needs to be decided before production can vend all four subscriptions from
-   this single stack:
-   - **Two-phase apply**: `terraform apply -target=module.subscription_management
-     -target=module.subscription_connectivity -target=module.subscription_security` (plus identity)
-     to create just the subscriptions first, capture the resulting IDs, feed them into the provider
-     blocks (e.g. via `terraform.tfvars`), then run a full apply.
-   - **Split subscription creation into its own upstream stack/workspace** that runs before
-     `ta-alz-core` and exposes the created IDs as outputs — `ta-alz-core` would then consume them
-     via `terraform_remote_state`/input variables instead of creating and consuming them in the same
-     state.
+- `architecture_name = "custom_alz"` points at
+  `lib/architecture_definitions/custom_alz.alz_architecture_definition.json`, which defines 12
+  management groups rooted at `root` (not the module default's `alz` root id): `platform` and
+  `applications` directly under `root`; `management`, `connectivity`, `identity`, and `security`
+  under `platform`; `appa`, `appb`, `appc` under `applications`; and `sandbox` /
+  `decommissioned` directly under `root`.
+- Each management group's `archetypes` entry (e.g. `root_custom`, `platform_custom`,
+  `security_custom`) points at a matching override file in
+  `lib/archetype_definitions/*.alz_archetype_override.json` — these are the "custom ALZ library
+  overrides" referenced under Prerequisites above, where standard ALZ policies were intentionally
+  removed from the archetypes. The policy assignments actually wired in live in
+  `lib/policy_assignments/` — mostly tag-enforcement policies (`tag-RG-*`, `tag-*`, including
+  `TA-Require-RG-Tag`, see Configuration above) plus a handful of guardrails
+  (`Allowed-Locations`, `CIS-Benchmark`, `Subnet-NSG-Audit`, `audit-backup-vm`,
+  `publicip-dmz-only`).
+- `parent_resource_id = data.azapi_client_config.current.tenant_id` — deploys directly under the
+  tenant root, using the calling identity's own tenant ID rather than a hardcoded one.
+- `subscription_placement` maps each of the four subscriptions vended by
+  `module.subscription_management`/`connectivity`/`identity`/`security` (see Subscription
+  Vending above) into its corresponding management group
+  (`local.alz_config.<x>_subscription_MG_name`) — so this module can only run once those four
+  subscription IDs exist.
+- The `retries` block (error-message-regex retry tuning for management groups/policy
+  definitions/assignments/role assignments) is present in `main.tf` but fully commented out —
+  not currently in use.
 
-   This is unresolved in the current code and needs to be settled before a production run where
-   none of the four subscriptions pre-exist.
+The resulting management-group resource IDs are exposed via the `management_group_resource_ids`
+output (see Outputs below). Note its description in `outputs.tf` gives `"alz"` as an example
+key — that's stale for this custom architecture; the actual top-level key is `root`, not `alz`.
 
 ## Resource Guard Deployment
 
@@ -193,19 +174,20 @@ Services Vaults.
 
 ## Microsoft Defender for Cloud
 
-`main.defender.tf` calls a small local module, `./modules/DefenderForCloud`, which wraps
+`main.defender.tf` calls `app.terraform.io/padi-org/ta-res-azure-defender/azurerm` (pinned
+`1.0.0`, see table above), a small module hosted on our private Terraform Cloud registry (source
+lives in the `azure-tf-modules/ta-res-azure-defender` repo), which wraps
 `azurerm_security_center_subscription_pricing` directly (one resource per entry in a `plans` map,
 each with a `tier` — `Free`/`Standard` — and an optional `subplan`). It's a thin wrapper rather
 than an AVM module because there isn't a published AVM module for subscription-level Defender
-pricing plans; identical copies of this same local module also exist in `ta-alz-security` and
-`ta-alz-identity`, each configuring their own subscription's plans.
+pricing plans; this same module is also used by `ta-alz-security` and `ta-alz-identity`, each
+configuring their own subscription's plans.
 
 Currently configured here: only `CloudPosture = { tier = "Free" }`, applied to the **management**
-subscription (via the `azurerm.management` provider alias). The module's `terraform.tf` pins
-`azurerm ~> 4.81` as a required provider.
+subscription (via the `azurerm.management` provider alias). 
 
 To enable additional plans, add entries to the `plans` map in `main.defender.tf`. Valid
-`resource_type` keys (per the inline comment in `modules/DefenderForCloud/main.tf`): `AI`, `Api`,
+`resource_type` keys (per the inline comment in `ta-res-azure-defender/main.tf`): `AI`, `Api`,
 `AppServices`, `ContainerRegistry`, `KeyVaults`, `KubernetesService`, `SqlServers`,
 `SqlServerVirtualMachines`, `StorageAccounts`, `VirtualMachines`, `Arm`, `Dns`,
 `OpenSourceRelationalDatabases`, `Containers`, `CosmosDbs`, and `CloudPosture`.

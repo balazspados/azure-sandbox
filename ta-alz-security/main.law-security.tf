@@ -53,7 +53,7 @@ module "law_security" {
   log_analytics_workspace_internet_ingestion_enabled = local.law_security_parameters.log_analytics_workspace_internet_ingestion_enabled
   log_analytics_workspace_internet_query_enabled     = local.law_security_parameters.log_analytics_workspace_internet_query_enabled
   log_analytics_workspace_retention_in_days          = local.law_security_parameters.log_analytics_workspace_retention_in_days
-  # log_analytics_workspace_sku = local.law_security_parameters.log_analytics_workspace_sku
+  log_analytics_workspace_sku = local.law_security_parameters.log_analytics_workspace_sku
   enable_telemetry = local.alz_config.telemetry_enabled # Disabled now, https://azure.github.io/Azure-Verified-Modules/help-support/telemetry/
   tags             = local.common_tags
 

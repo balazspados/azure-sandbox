@@ -10,7 +10,7 @@ module "update_manager_osupdate_001" {
   }
   location            = local.alz_config.azure_region_location
   name                = local.update_manager_parameters.osupdate_001.name
-  resource_group_name = local.rg_management.name
+  resource_group_name = local.rg_identity_001.name
   scope               = local.update_manager_parameters.osupdate_001.scope
   extension_properties = {
     InGuestPatchMode = local.update_manager_parameters.osupdate_001.scope_InGuestPatchMode
@@ -44,7 +44,7 @@ module "update_manager_osupdate_002" {
   }
   location            = local.alz_config.azure_region_location
   name                = local.update_manager_parameters.osupdate_002.name
-  resource_group_name = local.rg_management.name
+  resource_group_name = local.rg_identity_001.name
   scope               = local.update_manager_parameters.osupdate_002.scope
   extension_properties = {
     InGuestPatchMode = local.update_manager_parameters.osupdate_002.scope_InGuestPatchMode
@@ -78,7 +78,7 @@ module "update_manager_defupdate_001" {
   }
   location            = local.alz_config.azure_region_location
   name                = local.update_manager_parameters.defupdate_001.name
-  resource_group_name = local.rg_management.name
+  resource_group_name = local.rg_identity_001.name
   scope               = local.update_manager_parameters.defupdate_001.scope
   extension_properties = {
     InGuestPatchMode = local.update_manager_parameters.defupdate_001.scope_InGuestPatchMode

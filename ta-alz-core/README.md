@@ -73,10 +73,10 @@ Terraform Registry:
 
 | Module | Registry | Pinned version | Latest available (2026-09-23) |
 |---|---|---|---|
-| `Azure/avm-ptn-alz-management/azurerm` | Public (`registry.terraform.io`) | 0.9.0 | 0.9.0 |
-| `Azure/avm-ptn-alz/azurerm` | Public (`registry.terraform.io`) | 0.21.0 | 0.21.0 |
-| `Azure/avm-res-dataprotection-resourceguard/azurerm` | Public (`registry.terraform.io`) | 0.1.0 | 0.1.0 (only release published) |
-| `Azure/avm-ptn-alz-sub-vending/azure` (used 4×) | Public (`registry.terraform.io`) | 0.3.2 | 0.3.2 |
+| `Azure/avm-ptn-alz-management/azurerm` | Public | 0.9.0 | 0.9.0 |
+| `Azure/avm-ptn-alz/azurerm` | Public | 0.21.0 | 0.21.0 |
+| `Azure/avm-res-dataprotection-resourceguard/azurerm` | Public | 0.1.0 | 0.1.0 (only release published) |
+| `Azure/avm-ptn-alz-sub-vending/azure` (used 4×) | Public | 0.3.2 | 0.3.2 |
 | `ta-res-azure-defender/azurerm` | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) |
 
 ## Management Landing Zone (`alz_management`)

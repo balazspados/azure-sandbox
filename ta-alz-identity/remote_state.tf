@@ -20,3 +20,14 @@ data "terraform_remote_state" "alz_network" {
     }
   }
 }
+
+data "terraform_remote_state" "alz_security" {
+  backend = "remote"
+
+  config = {
+    organization = "padi-org"
+    workspaces = {
+      name = "alz-security"
+    }
+  }
+}

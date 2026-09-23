@@ -25,7 +25,7 @@ resource "azurerm_private_endpoint" "pep_identity_recovery_vault" {
 ### Create Recovery Services Vault
 module "identity_recovery_vault" {
   source  = "Azure/avm-res-recoveryservices-vault/azurerm"
-  version = "1.3.1" # https://github.com/Azure/terraform-azurerm-avm-res-recoveryservices-vault
+  version = "1.3.2" # https://github.com/Azure/terraform-azurerm-avm-res-recoveryservices-vault
   providers = {
     azurerm = azurerm.identity
     azapi   = azapi.identity
@@ -43,7 +43,7 @@ module "identity_recovery_vault" {
   workload_backup_policy        = local.identity_recovery_vault_parameters.workload_backup_policy
   diagnostic_settings = {
     law = {
-      workspace_resource_id = local.security_log_analytics_workspace_id
+      workspace_resource_id = local.security_log_analytics_workspace.id
     }
   }
   managed_identities = {

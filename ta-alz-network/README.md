@@ -108,14 +108,14 @@ As of 2026-09-23, checked against the Terraform Registry:
 
 | Module | Registry | Pinned version | Latest available (2026-09-23) | Status |
 |---|---|---|---|---|
-| `Azure/avm-res-network-virtualnetwork/azurerm` (used 3×: `platform_vnet_001`, `platform_vnet_005`, `identity_vnet_001`) | Public (`registry.terraform.io`) | 0.22.2 | 0.22.2 | Live — current |
-| `Azure/avm-res-network-networksecuritygroup/azurerm` (used 4×: `nsg_nw_001`, `nsg_nw_004_bastion`, `nsg_nw_005`, `nsg_nw_vnet_idn_001`) | Public (`registry.terraform.io`) | 0.5.1 | 0.5.1 | Live — current |
-| `Azure/avm-ptn-network-private-link-private-dns-zones/azurerm` | Public (`registry.terraform.io`) | 0.23.2 | 0.23.2 | Live — current |
-| `Azure/avm-res-keyvault-vault/azurerm` | Public (`registry.terraform.io`) | 0.11.0 | 0.11.0 | Live — current |
+| `Azure/avm-res-network-virtualnetwork/azurerm` (used 3×: `platform_vnet_001`, `platform_vnet_005`, `identity_vnet_001`) | Public | 0.22.2 | 0.22.2 | Live — current |
+| `Azure/avm-res-network-networksecuritygroup/azurerm` (used 4×: `nsg_nw_001`, `nsg_nw_004_bastion`, `nsg_nw_005`, `nsg_nw_vnet_idn_001`) | Public | 0.5.1 | 0.5.1 | Live — current |
+| `Azure/avm-ptn-network-private-link-private-dns-zones/azurerm` | Public | 0.23.2 | 0.23.2 | Live — current |
+| `Azure/avm-res-keyvault-vault/azurerm` | Public | 0.11.0 | 0.11.0 | Live — current |
 | `ta-res-azure-defender/azurerm` (`main.defender.tf`) | Private (`app.terraform.io/padi-org`) | 1.0.0 | 1.0.0 (only release published) | Live — current |
-| `Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm` | Public (`registry.terraform.io`) | 0.17.2 | 0.17.2 | Live — current |
-| `Azure/avm-res-network-bastionhost/azurerm` | Public (`registry.terraform.io`) | 0.9.0 | 0.9.0 | Live — current |
-| `Azure/avm-res-network-dnsresolver/azurerm` | Public (`registry.terraform.io`) | 0.8.0 | 0.8.0 | Live — current |
+| `Azure/avm-ptn-alz-connectivity-virtual-wan/azurerm` | Public | 0.17.2 | 0.17.2 | Live — current |
+| `Azure/avm-res-network-bastionhost/azurerm` | Public | 0.9.0 | 0.9.0 | Live — current |
+| `Azure/avm-res-network-dnsresolver/azurerm` | Public | 0.8.0 | 0.8.0 | Live — current |
 
 ## Platform & Identity VNets
 
